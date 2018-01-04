@@ -1,0 +1,8 @@
+/opt/resource/linux-adk/src/accessory.c
+/opt/resource/linux-adk/src/axis.c
+/opt/resource/linux-adk/src/hid.c
+/opt/resource/linux-adk/src/device.c
+/opt/resource/linux-adk/src/linux-adk.h
+/opt/resource/linux-adk/src/linux-adk.c
+/opt/resource/linux-adk/src/hid.h
+/opt/resource/linux-adk/src/axis.h

@@ -32,15 +32,36 @@ extern void accessory_main(accessory_t * acc);
 
 volatile int stop_acc = 0;
 
+
+#define  Vendor_Meizu (0x2717)
+//2b0e:1764
+//2a45:2008
+//04e8:6860
+
+//xiaomi 4
+//2717:0360
+#if 1
 static const accessory_t acc_default = {
-	.device = "18d1:4e42",
-	.manufacturer = "Google, Inc.",
-	.model = "DemoKit",
-	.description = "Demo ABS2013",
+	.device = "2717:0360",
+	.manufacturer = "Hello Inc",
+	.model = "HelloWorldModel",
 	.version = "2.0",
+	.description = "Demo ABS2013",
 	.url = "https://github.com/gibsson",
 	.serial = "0000000012345678",
 };
+#else
+static const accessory_t acc_default = {
+	.device = "2b0e:1764",
+	.manufacturer = "leautolinknetworks",
+	.model = "ecolink",
+	.version = "2.0",
+	.description = "Demo ABS2013",
+	.url = "https://github.com/gibsson",
+	.serial = "0000000012345678",
+};
+
+#endif
 
 static int is_accessory_present(accessory_t * acc);
 static int init_accessory(accessory_t * acc);
@@ -167,7 +188,7 @@ static int init_accessory(accessory_t * acc)
 	uint16_t pid, vid;
 	char *tmp;
 	uint8_t buffer[2];
-	int tries = 10;
+	int tries = 1;
 
 	/* Initializing libusb */
 	ret = libusb_init(NULL);
@@ -175,6 +196,9 @@ static int init_accessory(accessory_t * acc)
 		printf("libusb init failed: %d\n", ret);
 		return ret;
 	}
+
+	extern int parse_devs(int vid);
+	//parse_devs(Vendor_Meizu);
 
 	/* Check if device is not already in accessory mode */
 	if (is_accessory_present(acc))
@@ -191,6 +215,7 @@ static int init_accessory(accessory_t * acc)
 		printf("Unable to open device...\n");
 		return -1;
 	}
+	printf("Open device(%4.4x %4.4x) ok\n",vid, pid);
 
 	/* Now asking if device supports Android Open Accessory protocol */
 	ret = libusb_control_transfer(acc->handle,
@@ -216,7 +241,6 @@ static int init_accessory(accessory_t * acc)
 	}
 
 	printf("Sending identification to the device\n");
-
 	if (acc->manufacturer) {
 		printf(" sending manufacturer: %s\n", acc->manufacturer);
 		ret = libusb_control_transfer(acc->handle,
@@ -230,6 +254,7 @@ static int init_accessory(accessory_t * acc)
 			goto error;
 	}
 
+	usleep(10000);
 	if (acc->model) {
 		printf(" sending model: %s\n", acc->model);
 		ret = libusb_control_transfer(acc->handle,
@@ -243,6 +268,9 @@ static int init_accessory(accessory_t * acc)
 			goto error;
 	}
 
+	
+
+	usleep(10000);
 	printf(" sending description: %s\n", acc->description);
 	ret = libusb_control_transfer(acc->handle,
 				      LIBUSB_ENDPOINT_OUT |
@@ -253,6 +281,7 @@ static int init_accessory(accessory_t * acc)
 	if (ret < 0)
 		goto error;
 
+	usleep(10000);
 	printf(" sending version: %s\n", acc->version);
 	ret = libusb_control_transfer(acc->handle,
 				      LIBUSB_ENDPOINT_OUT |
@@ -263,6 +292,7 @@ static int init_accessory(accessory_t * acc)
 	if (ret < 0)
 		goto error;
 
+	usleep(10000);
 	printf(" sending url: %s\n", acc->url);
 	ret = libusb_control_transfer(acc->handle,
 				      LIBUSB_ENDPOINT_OUT |
@@ -273,6 +303,7 @@ static int init_accessory(accessory_t * acc)
 	if (ret < 0)
 		goto error;
 
+	usleep(10000);
 	printf(" sending serial number: %s\n", acc->serial);
 	ret = libusb_control_transfer(acc->handle,
 				      LIBUSB_ENDPOINT_OUT |
@@ -283,6 +314,7 @@ static int init_accessory(accessory_t * acc)
 	if (ret < 0)
 		goto error;
 
+#if 0
 	if (acc->aoa_version >= 2) {
 		printf(" asking for audio support\n");
 		ret = libusb_control_transfer(acc->handle,
@@ -292,26 +324,38 @@ static int init_accessory(accessory_t * acc)
 		if (ret < 0)
 			goto error;
 	}
+#endif
 
-	printf("Turning the device in Accessory mode\n");
+	usleep(20000);
+	printf("Turning the device in Accessory mode ...");
 	ret = libusb_control_transfer(acc->handle,
 				      LIBUSB_ENDPOINT_OUT |
 				      LIBUSB_REQUEST_TYPE_VENDOR,
 				      AOA_START_ACCESSORY, 0, 0, NULL, 0, 0);
-	if (ret < 0)
+	if (ret < 0) {
+		printf("failed\n");
 		goto error;
+	}
 
 	/* Let some time for the new enumeration to happen */
-	usleep(10000);
+	usleep(20000);
 
+	tries = 2;
 	/* Connect to the Accessory */
 	while (tries--) {
 		if (is_accessory_present(acc))
 			break;
-		else if (!tries)
-			goto error;
+			//goto error;
 		else
 			sleep(1);
+	}
+
+
+	extern int open_special_vid_dev(int vid, accessory_t * acc);
+	ret = open_special_vid_dev(AOA_ACCESSORY_VID,acc);
+	if(ret != 0 ) {
+		printf("open_special_vid_dev failed\n");
+		return -1;
 	}
 
 	return 0;
@@ -321,18 +365,22 @@ error:
 	return -1;
 }
 
+
 static int is_accessory_present(accessory_t * acc)
 {
+	printf("is_accessory_present ..\n");
 	struct libusb_device_handle *handle;
 	uint16_t vid = AOA_ACCESSORY_VID;
 	uint16_t pid = 0;
 
+	printf("open AOA_ACCESSORY_PID ...");
 	/* Trying to open all the AOA IDs possible */
 	pid = AOA_ACCESSORY_PID;
 	handle = libusb_open_device_with_vid_pid(NULL, vid, pid);
 	if (handle != NULL)
 		goto claim;
 
+#if 0
 	pid = AOA_ACCESSORY_ADB_PID;
 	handle = libusb_open_device_with_vid_pid(NULL, vid, pid);
 	if (handle != NULL)
@@ -357,7 +405,8 @@ static int is_accessory_present(accessory_t * acc)
 	handle = libusb_open_device_with_vid_pid(NULL, vid, pid);
 	if (handle != NULL)
 		goto claim;
-
+#endif
+	printf("not present\n");
 	return 0;
 
 claim:

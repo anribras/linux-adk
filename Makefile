@@ -21,7 +21,7 @@ CC			= $(CROSS_COMPILE)gcc
 INSTALL		= install
 MKDIR		= mkdir -p
 
-LIBS		=  -lusb-1.0 -lpthread
+LIBS		=  -lusb-1.0 -lpthread -lm
 CFLAGS		+= -g -O0
 LDFLAGS 	+=
 CPPFLAGS	+=
@@ -35,7 +35,9 @@ CFLAGS		+= $(ARCH_CFLAGS)
 
 OBJ 		= $(objdir)/accessory.o \
 			  $(objdir)/hid.o \
-			  $(objdir)/linux-adk.o
+			  $(objdir)/linux-adk.o\
+			  $(objdir)/device.o \
+			  $(objdir)/axis.o
 
 TARGET		= linux-adk
 

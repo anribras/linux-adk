@@ -30,6 +30,69 @@
 
 #include "linux-adk.h"
 #include "hid.h"
+#include "axis.h"
+
+#define REPORT_ID (4)
+#define TOUCHSCREEN_ENABLE  (1)
+
+#if(TOUCHSCREEN_ENABLE == 1) 
+static const unsigned char hid_report_desc[] = {
+		0x05, 0x0d,                         // USAGE_PAGE (Digitizers)
+		0x09, 0x02,                         // USAGE (Touch Screen)
+		0xa1, 0x01,                         // COLLECTION (Application)
+		//0xa1, 0x02,                         // COLLECTION (Logical)
+		//0xa1, 0x00,                         // COLLECTION (Physical)
+		0x85, REPORT_ID,                    //   REPORT_ID (4)
+		//0x09, 0x20,                         //   USAGE (Stylus)
+		0x09, 0x20,                         //   USAGE (Finger)
+		//0xa1, 0x00,                         //   COLLECTION (Physical)
+		0xa1, 0x02,                         //   COLLECTION (Logical)
+		0x09, 0x42,                         //     USAGE (Tip Switch)
+		0x09, 0x32,                         //     USAGE (In Range)
+		0x15, 0x00,                         //     LOGICAL_MINIMUM (0)
+		0x25, 0x01,                         //     LOGICAL_MAXIMUM (1)
+		0x75, 0x01,                         //     REPORT_SIZE (1)
+		0x95, 0x02,                         //     REPORT_COUNT (2)
+		0x81, 0x02,                         //     INPUT (Data,Var,Abs)
+		0x75, 0x01,                         //     REPORT_SIZE (1)
+		0x95, 0x06,                         //     REPORT_COUNT (6)
+		0x81, 0x01,                         //     INPUT (Cnst,Ary,Abs)
+		0x05, 0x01,                         //     USAGE_PAGE (Generic Desktop)
+
+		0x35, 0x00,                         //     PHYSICAL_MINIMUM (0)         
+		0x46, 0x00, 0x00,                   //     PHYSICAL_MAXIMUM (0)
+		//0x26, 0x10, 0x27,                   //     LOGICAL_MAXIMUM (10000)
+		//0x46, 0x38, 0x04,                   //     PHYSICAL_MAXIMUM (1080)
+		0x26, 0x38, 0x04,                   //     LOGICAL_MAXIMUM (1080)
+		0x75, 0x10,                         //     REPORT_SIZE (16) 
+		0x95, 0x01,                         //     REPORT_COUNT (1)            
+		//0x55, 0x0E,                         //     UNIT_EXPONENT (-2)           
+		//0x65, 0x11,                         //     UNIT (cm,SI Linear)                  
+		//0x55, 0x00,        //       Unit Exponent (0)
+		//0x65, 0x00,        //       Unit (None)
+		//0x45, 0x00,                         //     PHYSICAL_MAXIMUM (0)
+		0x09, 0x30,                         //     USAGE (X)                    
+		0x81, 0x02,                         //     INPUT (Data,Var,Abs)         
+		//0x46, 0x80, 0x07,                   //     PHYSICAL_MAXIMUM (1920)
+		0x26, 0x80, 0x07,                   //     LOGICAL_MAXIMUM (1920)
+		0x09, 0x31,                         //     USAGE (Y)                    
+		0x81, 0x02,                         //     INPUT (Data,Var,Abs)
+		0xc0,                               //   END_COLLECTION
+		0xc0,                               // END_COLLECTIO
+};
+
+
+struct Report {
+	unsigned char  report_id ;  // Must be set to 4
+	struct {
+		unsigned char   bTipSwitch : 1;
+		unsigned char   bInRange   : 1;
+		unsigned char   reserved   : 6;
+	} status;
+	unsigned short  wXData;
+	unsigned short  wYData;
+};
+#endif
 
 static void *receive_loop(void *arg)
 {
@@ -113,6 +176,7 @@ static int open_device(struct libusb_device_handle **handle,
 		return -1;
 	}
 
+	printf("libusb_kernel_driver_active\n");
 	ret = libusb_kernel_driver_active(*handle, interface);
 	if (ret == 1) {
 		if (libusb_detach_kernel_driver(*handle, interface)) {
@@ -124,6 +188,7 @@ static int open_device(struct libusb_device_handle **handle,
 		kernel_claimed = 1;
 	}
 
+	printf("libusb_claim_interface\n");
 	ret = libusb_claim_interface(*handle, interface);
 	if (ret) {
 		printf("Failed to claim interface %d.\n", interface);
@@ -150,9 +215,42 @@ static void callback_hid(struct libusb_transfer *transfer)
 		int rc;
 
 		android_transfer = libusb_alloc_transfer(0);
+
+
+#if(TOUCHSCREEN_ENABLE == 1) 
+transfer->actual_length = sizeof(struct Report);
+
+		//set Report for each moving..
+		//(0,0) -->(1000,1000) 
+		//(100,100) -->按下　(900,900)-->放开
+		static unsigned short counts = 0;
+
+		struct Report report;
+		report.report_id = REPORT_ID;
+		if(counts != 0) {
+			report.wXData = counts % 1080;
+			report.wYData = counts * 1920 / 1080 % 1920 ;
+		} else 
+			report.wXData = report.wYData = 0;
+
+		if(report.wXData >= 200  && report.wXData <= 900) 
+			report.status.bTipSwitch = 1;
+		else
+			report.status.bTipSwitch = 0;
+		counts ++;
+		transfer->buffer = (unsigned char*)&report;
+#endif
 		keybuf = malloc(transfer->actual_length + LIBUSB_CONTROL_SETUP_SIZE);
 		memcpy(keybuf + LIBUSB_CONTROL_SETUP_SIZE, transfer->buffer,
 		       transfer->actual_length);
+
+		printf("hid report data:\n");
+		int s = 0;
+		for(s = 0 ; s <  transfer->actual_length; s ++) {
+			printf("0x%02x ",transfer->buffer[s]);
+		}; 
+		printf("\n");
+		
 
 		libusb_fill_control_setup(keybuf,
 					  LIBUSB_ENDPOINT_OUT |
@@ -201,10 +299,13 @@ unsigned char search_hid(hid_device * hid)
 		device = list[i];
 		int r;
 
+		printf("cnt(%d) i(%d) \n",cnt,i);
+
 		r = libusb_get_device_descriptor(device, &desc);
 		if (r < 0)
 			continue;
 
+		printf("desc.bDeviceClass = %d\n",desc.bDeviceClass);
 		if (desc.bDeviceClass == LIBUSB_CLASS_HID) {
 			goto found;
 			break;
@@ -212,13 +313,22 @@ unsigned char search_hid(hid_device * hid)
 			struct libusb_config_descriptor *current_config;
 			int r;
 
+			printf("libusb_get_active_config_descriptor\n");
 			r = libusb_get_active_config_descriptor(device,
 								&current_config);
-			if (r < 0)
+			if (r < 0) {
+				printf("get active desc error(%d)",r);
 				continue;
+			}
+			printf("parse hid cfg interface\n");
+			//extern int parse_configuration(struct libusb_config_descriptor *config);
+			//parse_configuration(current_config);
+
+			printf("bNumInterfaces(%d)\n",current_config->bNumInterfaces);
 
 			for (j = 0; j < current_config->bNumInterfaces; j++) {
 				int k;
+				printf("num_altsetting(%d)\n",current_config->interface[j].num_altsetting);
 				for (k = 0;
 				     k <
 				     current_config->
@@ -237,20 +347,27 @@ unsigned char search_hid(hid_device * hid)
 						    [j].
 						    altsetting[k].endpoint[0].
 						    wMaxPacketSize;
+						printf("set endpoint(0x%x)\n",hid->endpoint_in);
 						goto found;
 					}
 				}
 			}
+			printf("libusb_free_config_descriptor\n");
 			libusb_free_config_descriptor(current_config);
 		}
 	}
+
+	printf("found ...\n");
 found:
 	if (i == cnt)
 		goto error0;
 
+	printf("open_device...\n");
 	if (open_device(&hid->handle, device, j) < 0)
 		goto error0;
 
+
+	printf("GET_DESCRIPTOR...\n");
 	hid->descriptor_size = libusb_control_transfer(hid->handle,
 						       LIBUSB_ENDPOINT_IN |
 						       LIBUSB_RECIPIENT_INTERFACE,
@@ -263,6 +380,13 @@ found:
 	libusb_free_device_list(list, 1);
 	printf("=> found HID device vid 0x%x pid 0x%x\n", desc.idVendor,
 	       desc.idProduct);
+	int s = 0;
+	printf("descriptor: \n");
+	for(s = 0 ; s <  hid->descriptor_size; s ++) {
+		printf("0x%02x ",hid->descriptor[s]);
+	}; 
+	printf("\n");
+
 	return 0;
 error1:
 	libusb_close(hid->handle);
@@ -276,6 +400,18 @@ int register_hid_callback(accessory_t * acc, hid_device * hid)
 	struct libusb_transfer *hid_transfer;
 	unsigned char *keybuf;
 	int rc;
+
+	AxisSetting set;
+	set.css.base_x = 0 ;
+	set.css.base_y = 0 ;
+	set.css.view_width= 0 ;
+	set.css.view_height = set.css.full_height = 1920 ;
+	set.css.view_width = set.css.full_width = 1080 ;
+
+	set.pss.full_width =  1080;
+	set.pss.full_height =  1920;
+
+	axis_init(&set,0);
 
 	keybuf = malloc(hid->packet_size);
 
@@ -305,9 +441,14 @@ int send_hid_descriptor(accessory_t * acc, hid_device * hid)
 {
 	int ret;
 
+	printf("register hid\n");
 	ret = libusb_control_transfer(acc->handle, LIBUSB_ENDPOINT_OUT |
 				      LIBUSB_REQUEST_TYPE_VENDOR,
+#ifdef TOUCHSCREEN_ENABLE
+				      AOA_REGISTER_HID, 1, sizeof(hid_report_desc),
+#else
 				      AOA_REGISTER_HID, 1, hid->descriptor_size,
+#endif
 				      NULL, 0, 0);
 	if (ret < 0) {
 		printf("couldn't register HID device on the android device : %s\n",
@@ -316,10 +457,15 @@ int send_hid_descriptor(accessory_t * acc, hid_device * hid)
 		return -1;
 	}
 
+	printf("send hid report\n");
 	ret = libusb_control_transfer(acc->handle, LIBUSB_ENDPOINT_OUT |
 				      LIBUSB_REQUEST_TYPE_VENDOR,
 				      AOA_SET_HID_REPORT_DESC, 1, 0,
-				      hid->descriptor, hid->descriptor_size, 0);
+#ifdef TOUCHSCREEN_ENABLE
+					  hid_report_desc, sizeof(hid_report_desc), 0);
+#else
+					  hid->descriptor, hid->descriptor_size, 0);
+#endif
 	if (ret < 0) {
 		printf("couldn't send HID descriptor to the android device\n");
 		libusb_close(hid->handle);
