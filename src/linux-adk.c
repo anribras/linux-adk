@@ -33,16 +33,18 @@ extern void accessory_main(accessory_t * acc);
 volatile int stop_acc = 0;
 
 
-#define  Vendor_Meizu (0x2717)
+//#define  Vendor_Meizu (0x2717)
 //2b0e:1764
 //2a45:2008
 //04e8:6860
 
 //xiaomi 4
 //2717:0360
-#if 1
+//lemax
+//2b0e:1840
+#if 0
 static const accessory_t acc_default = {
-	.device = "2717:0360",
+	.device = "2a45:2008",
 	.manufacturer = "Hello Inc",
 	.model = "HelloWorldModel",
 	.version = "2.0",
@@ -50,13 +52,14 @@ static const accessory_t acc_default = {
 	.url = "https://github.com/gibsson",
 	.serial = "0000000012345678",
 };
+05c6:901d
 #else
 static const accessory_t acc_default = {
-	.device = "2b0e:1764",
+	.device = "05c6:901d",
 	.manufacturer = "leautolinknetworks",
 	.model = "ecolink",
-	.version = "2.0",
-	.description = "Demo ABS2013",
+	.version = "01",
+	.description = "baby",
 	.url = "https://github.com/gibsson",
 	.serial = "0000000012345678",
 };
@@ -67,37 +70,26 @@ static int is_accessory_present(accessory_t * acc);
 static int init_accessory(accessory_t * acc);
 static void fini_accessory(accessory_t * acc);
 
-static void show_help(char *name)
+char* utf8(const char *str)
 {
-	printf
-	    ("Linux Accessory Development Kit\n\nusage: %s [OPTIONS]\nOPTIONS:\n"
-	     "\t-d, --device\n\t\tUSB device product and vendor IDs. "
-	     "Default is \"18d1:4e42\" (Nexus7).\n"
-	     "\t-D, --description\n\t\taccessory description. "
-	     "Default is \"Demo ABS2013\".\n"
-	     "\t-m, --manufacturer\n\t\tmanufacturer's name. "
-	     "Default is \"Google, Inc.\".\n"
-	     "\t-M, --model\n\t\tmodel's name. "
-	     "Default is \"DemoKit\".\n"
-	     "\t-n, --vernumber\n\t\taccessory version number. "
-	     "Default is \"1.0\".\n"
-	     "\t-N, --no_app\n\t\toption that allows to connect without an "
-	     "Android App (AOA v2.0 only, for Audio and HID).\n"
-	     "\t-s, --serial\n\t\tserial numder. "
-	     "Default is \"007\".\n"
-	     "\t-u, --url\n\t\taccessory url. "
-	     "Default is \"https://github.com/gibsson\".\n"
-	     "\t-v, --version\n\t\tShow program version and exit.\n"
-	     "\t-h, --help\n\t\tShow this help and exit.\n", name);
-	return;
+	char *utf8;
+	utf8 = (char*)malloc(1+(2*strlen(str)));
+
+	if (utf8) {
+		char *c = utf8;
+		for (; *str; ++str) {
+			if (*str & 0x80) {
+				*c++ = *str;
+			} else {
+				*c++ = (char) (0xc0 | (unsigned) *str >> 6);
+				*c++ = (char) (0x80 | (*str & 0x3f));
+			}
+		}
+		*c++ = '\0';
+	}
+	return utf8;
 }
 
-static void show_version(char *name)
-{
-	printf("%s v%s\nreport bugs to %s\n", name, PACKAGE_VERSION,
-	       PACKAGE_BUGREPORT);
-	return;
-}
 
 static void signal_handler(int signo)
 {
@@ -147,10 +139,10 @@ int main(int argc, char *argv[])
 			acc.url = argv[++arg_count];
 		} else if ((strcmp(argv[arg_count], "-v") == 0)
 			   || (strcmp(argv[arg_count], "--version") == 0)) {
-			show_version(argv[0]);
+			/*show_version(argv[0]);*/
 			exit(1);
 		} else {
-			show_help(argv[0]);
+			/*show_help(argv[0]);*/
 			exit(1);
 		}
 		arg_count++;
@@ -248,7 +240,7 @@ static int init_accessory(accessory_t * acc)
 					      | LIBUSB_REQUEST_TYPE_VENDOR,
 					      AOA_SEND_IDENT, 0,
 					      AOA_STRING_MAN_ID,
-					      (uint8_t *) acc->manufacturer,
+					      utf8(acc->manufacturer),
 					      strlen(acc->manufacturer) + 1, 0);
 		if (ret < 0)
 			goto error;

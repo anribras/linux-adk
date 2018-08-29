@@ -33,22 +33,30 @@
 #include "axis.h"
 
 #define REPORT_ID (4)
-#define TOUCHSCREEN_ENABLE  (1)
+//#define TOUCHSCREEN_ENABLE  (2)
+
+#define PHONE_WIDTH (1080)
+#define PHONE_HEIGHT (1920)
+
+#define PHONE_WIDTH (1600)
+#define PHONE_HEIGHT (1200)
 
 #if(TOUCHSCREEN_ENABLE == 1) 
-static const unsigned char hid_report_desc[] = {
+static unsigned char hid_report_desc[] = {
+
 		0x05, 0x0d,                         // USAGE_PAGE (Digitizers)
 		0x09, 0x02,                         // USAGE (Touch Screen)
 		0xa1, 0x01,                         // COLLECTION (Application)
-		//0xa1, 0x02,                         // COLLECTION (Logical)
-		//0xa1, 0x00,                         // COLLECTION (Physical)
 		0x85, REPORT_ID,                    //   REPORT_ID (4)
-		//0x09, 0x20,                         //   USAGE (Stylus)
-		0x09, 0x20,                         //   USAGE (Finger)
-		//0xa1, 0x00,                         //   COLLECTION (Physical)
-		0xa1, 0x02,                         //   COLLECTION (Logical)
+		0x09, 0x20,                         //   USAGE (Stlus)
+		//0x09, 0x22,                         //   USAGE (Fingers)
+		//0x09, 0x01,                         //   USAGE (Internal pen)
+		//0x09, 0x02,                         //   USAGE (External pen)
+		0xa1, 0x00,                         //   COLLECTION (Physical)
+		//0xa1, 0x02,                         //   COLLECTION (Logical)
 		0x09, 0x42,                         //     USAGE (Tip Switch)
 		0x09, 0x32,                         //     USAGE (In Range)
+		//0x09, 0x47,                         //     USAGE (Confidence)
 		0x15, 0x00,                         //     LOGICAL_MINIMUM (0)
 		0x25, 0x01,                         //     LOGICAL_MAXIMUM (1)
 		0x75, 0x01,                         //     REPORT_SIZE (1)
@@ -57,28 +65,38 @@ static const unsigned char hid_report_desc[] = {
 		0x75, 0x01,                         //     REPORT_SIZE (1)
 		0x95, 0x06,                         //     REPORT_COUNT (6)
 		0x81, 0x01,                         //     INPUT (Cnst,Ary,Abs)
-		0x05, 0x01,                         //     USAGE_PAGE (Generic Desktop)
 
-		0x35, 0x00,                         //     PHYSICAL_MINIMUM (0)         
-		0x46, 0x00, 0x00,                   //     PHYSICAL_MAXIMUM (0)
+		0x05, 0x01,                         //     USAGE_PAGE (Generic Desktop)
+		//
+		//0x09, 0x01,                         //   USAGE_PAGE(Pointer)
+		//0xa1, 0x00,                         //   COLLECTION (Physical)
+		//
+
+		//0x35, 0x00,                         //     PHYSICAL_MINIMUM (0)         
+		//0x46, 0x00, 0x00,                   //     PHYSICAL_MAXIMUM (0)
+		
 		//0x26, 0x10, 0x27,                   //     LOGICAL_MAXIMUM (10000)
 		//0x46, 0x38, 0x04,                   //     PHYSICAL_MAXIMUM (1080)
 		0x26, 0x38, 0x04,                   //     LOGICAL_MAXIMUM (1080)
 		0x75, 0x10,                         //     REPORT_SIZE (16) 
 		0x95, 0x01,                         //     REPORT_COUNT (1)            
+		0xa4,                               //     PUSH
 		//0x55, 0x0E,                         //     UNIT_EXPONENT (-2)           
-		//0x65, 0x11,                         //     UNIT (cm,SI Linear)                  
+		//0x65, 0x11,                         //     UNIT (cm,SI Linear)
 		//0x55, 0x00,        //       Unit Exponent (0)
 		//0x65, 0x00,        //       Unit (None)
 		//0x45, 0x00,                         //     PHYSICAL_MAXIMUM (0)
 		0x09, 0x30,                         //     USAGE (X)                    
 		0x81, 0x02,                         //     INPUT (Data,Var,Abs)         
-		//0x46, 0x80, 0x07,                   //     PHYSICAL_MAXIMUM (1920)
+		//0x81, 0x06,                         //     INPUT (Data,Var,Ref)         
 		0x26, 0x80, 0x07,                   //     LOGICAL_MAXIMUM (1920)
 		0x09, 0x31,                         //     USAGE (Y)                    
 		0x81, 0x02,                         //     INPUT (Data,Var,Abs)
+		0xb4,                               //     POP
+
+		//0x81, 0x06,                         //     INPUT (Data,Var,Ref)
 		0xc0,                               //   END_COLLECTION
-		0xc0,                               // END_COLLECTIO
+		0xc0,                               // END_COLLECTION
 };
 
 
@@ -92,6 +110,211 @@ struct Report {
 	unsigned short  wXData;
 	unsigned short  wYData;
 };
+#elif (TOUCHSCREEN_ENABLE == 2)
+
+#define LOGICAL_MINIMUM_1 (0x15)
+#define LOGICAL_MAXIMUM_1 (0x25)
+#define LOGICAL_MINIMUM_2 (0x16)
+#define LOGICAL_MAXIMUM_2 (0x26)
+
+
+#define PHYSICAL_MINIMUM_1 (0x35)
+#define PHYSICAL_MAXIMUM_1 (0x45)
+#define PHYSICAL_MINIMUM_2 (0x36)
+#define PHYSICAL_MAXIMUM_2 (0x46)
+
+static unsigned char hid_report_desc[] = {
+		0x05, 0x0d,                         // USAGE_PAGE (Digitizers)
+		0x09, 0x02,                         // USAGE (Touch Screen)
+		0xa1, 0x01,                         // COLLECTION (Application)
+		0x85, REPORT_ID,                    //   REPORT_ID (4)
+		//0x09, 0x20,                         //   USAGE (Stlus)
+		//0x09, 0x22,                         //   USAGE (Fingers)
+		//0x09, 0x01,                         //   USAGE (Internal pen)
+		0x09, 0x02,                         //   USAGE (External pen)
+		0xa1, 0x00,                         //   COLLECTION (Physical)
+		//0xa1, 0x02,                         //   COLLECTION (Logical)
+		0x09, 0x42,                         //     USAGE (Tip Switch)
+		0x09, 0x32,                         //     USAGE (In Range)
+		//0x09, 0x47,                         //     USAGE (Confidence)
+		0x15, 0x00,                         //     LOGICAL_MINIMUM (0)
+		0x25, 0x01,                         //     LOGICAL_MAXIMUM (1)
+		0x75, 0x01,                         //     REPORT_SIZE (1)
+		0x95, 0x02,                         //     REPORT_COUNT (2)
+		0x81, 0x02,                         //     INPUT (Data,Var,Abs)
+		0x75, 0x01,                         //     REPORT_SIZE (1)
+		0x95, 0x06,                         //     REPORT_COUNT (6)
+		0x81, 0x01,                         //     INPUT (Cnst,Ary,Abs)
+
+                      // END_COLLECTION
+	0x05, 0x01,                    //     USAGE_PAGE (Generic Desktop)
+
+
+	0xa4, //push
+	/*0x09, 0x01,                         //   USAGE_PAGE(Pointer)*/
+	/*0xa1, 0x00,                         //   COLLECTION (Physical)*/
+    0x09, 0x30,                    //     USAGE (X)
+	LOGICAL_MINIMUM_2, 0x00,0xF8,               //     LOGICAL_MINIMUM (-2000),
+    LOGICAL_MAXIMUM_2, 0x00,0x08,               //     LOGICAL_MAXIMUM (2000)
+	PHYSICAL_MINIMUM_2, 0x00,0xF8,               //     printfCAL_MINIMUM (-2000),
+	PHYSICAL_MAXIMUM_2, 0x00,0x08,               //     LOGICAL_MAXIMUM (2000)
+    //0x81, 0x06,                    //     INPUT (Data,Var,Rel)
+    0x95, 0x01,                    //     REPORT_COUNT (1)
+    0x75, 0x10,                    //     REPORT_SIZE (16)
+    0x81, 0x02,                    //     INPUT (Data,Var,Abs)
+    0x09, 0x31,                    //     USAGE (Y)
+    LOGICAL_MINIMUM_2, 0x00,0xFC,               //     LOGICAL_MINIMUM (-1000),
+    LOGICAL_MAXIMUM_2, 0x00,0x04,               //     LOGICAL_MAXIMUM (1000)
+	PHYSICAL_MINIMUM_2, 0x00,0xF8,               //     LOGICAL_MINIMUM (-2000),
+	PHYSICAL_MAXIMUM_2, 0x00,0x08,               //     LOGICAL_MAXIMUM (2000)
+    //0x81, 0x06,                    //     INPUT (Data,Var,Rel)
+    0x81, 0x02,                    //     INPUT (Data,Var,Abs)
+	0xb4, //pop
+
+    0xc0,                          //   END_COLLECTION
+	0xc0
+};
+
+/** @brief _Report  */
+struct Report {
+	unsigned char  report_id ;  // Must be set to 4
+	struct {
+		unsigned char   bTipSwitch : 1;
+		unsigned char   bInRange   : 1;
+		unsigned char   reserved   : 6;
+	} status;
+	short  wXData;
+	short  wYData;
+	/*short Width;*/
+	/*short Height;*/
+};
+
+void set_hid_logical_range(unsigned short width, unsigned short height) 
+{
+	unsigned char *  tmp = hid_report_desc;
+	unsigned short lb_w =    0;
+	unsigned short ub_w =   width;
+	unsigned short lb_h =    0;
+	unsigned short ub_h =   height;
+	unsigned long i;
+	typedef enum {
+		STEP_1,
+		STEP_2,
+		STEP_3,
+		STEP_4,
+	} _STEP;
+	int step =  STEP_1;
+	for(i = 0 ; i < sizeof(hid_report_desc); i++) {
+		/*printf("search ...tmp[%ld]= 0x%02x",i,tmp[i]);*/
+		switch (step) {
+			case STEP_1:
+				if(tmp[i] == LOGICAL_MINIMUM_2) {
+					tmp[i+1] = lb_w & 0x00FF;
+					tmp[i+2] = (lb_w & 0xFF00) >> 8;
+					printf("lb_w val(%d) =(0x%02x 0x%02x)",lb_w,tmp[i+1],tmp[i+2]);
+					step = STEP_2;
+				}
+				break;
+			case STEP_2:
+				if(tmp[i] == LOGICAL_MAXIMUM_2) {
+					tmp[i+1] = ub_w & 0x00FF;
+					tmp[i+2] = (ub_w & 0xFF00) >> 8;
+					printf("ub_w val(%d) =(0x%02x 0x%02x)",ub_w,tmp[i+1],tmp[i+2]);
+					step = STEP_3;
+				}
+				break;
+			case STEP_3:
+				if(tmp[i] == LOGICAL_MINIMUM_2) {
+					tmp[i+1] = lb_h & 0x00FF;
+					tmp[i+2] = (lb_h & 0xFF00) >> 8;
+					printf("lb_h val(%d) =(0x%02x 0x%02x)\n",lb_h,tmp[i+1],tmp[i+2]);
+					step = STEP_4;
+				}
+				break;
+			case STEP_4:
+				//logical maximun
+				if(tmp[i] == LOGICAL_MAXIMUM_2) {
+					tmp[i+1] = ub_h & 0x00FF;
+					tmp[i+2] = (ub_h & 0xFF00) >> 8;
+					printf("ub_h val(%d) =(0x%02x 0x%02x)\n",ub_h,tmp[i+1],tmp[i+2]);
+					goto end;
+				}
+				break;
+		}
+	}
+end:
+	/*assert(step == STEP_4);*/
+	printf("hid report is:\n");
+	for(i = 0 ; i < sizeof(hid_report_desc) ;i++) {
+		printf("0x%02x ",tmp[i]);
+		if(i % 10 == 0)
+			printf("\n");
+	}
+	printf("\n");
+}
+
+void set_hid_physical_range(unsigned short width, unsigned short height) 
+{
+	unsigned char *  tmp = hid_report_desc;
+	unsigned short lb_w =    0;
+	unsigned short ub_w =   width;
+	unsigned short lb_h =    0;
+	unsigned short ub_h =   height;
+	unsigned long i;
+	typedef enum {
+		STEP_1,
+		STEP_2,
+		STEP_3,
+		STEP_4,
+	} _STEP;
+	int step =  STEP_1;
+	for(i = 0 ; i < sizeof(hid_report_desc); i++) {
+		//printf("search ...tmp[%ld]= 0x%02x",i,tmp[i]);
+		switch (step) {
+			case STEP_1:
+				if(tmp[i] == PHYSICAL_MINIMUM_2) {
+					tmp[i+1] = lb_w & 0x00FF;
+					tmp[i+2] = (lb_w & 0xFF00) >> 8;
+					printf("lb_w val(%d) =(0x%02x 0x%02x)",lb_w,tmp[i+1],tmp[i+2]);
+					step = STEP_2;
+				}
+				break;
+			case STEP_2:
+				if(tmp[i] == PHYSICAL_MAXIMUM_2) {
+					tmp[i+1] = ub_w & 0x00FF;
+					tmp[i+2] = (ub_w & 0xFF00) >> 8;
+					printf("ub_w val(%d) =(0x%02x 0x%02x)",ub_w,tmp[i+1],tmp[i+2]);
+					step = STEP_3;
+				}
+				break;
+			case STEP_3:
+				if(tmp[i] == PHYSICAL_MINIMUM_2) {
+					tmp[i+1] = lb_h & 0x00FF;
+					tmp[i+2] = (lb_h & 0xFF00) >> 8;
+					printf("lb_h val(%d) =(0x%02x 0x%02x)\n",lb_h,tmp[i+1],tmp[i+2]);
+					step = STEP_4;
+				}
+				break;
+			case STEP_4:
+				if(tmp[i] == PHYSICAL_MAXIMUM_2) {
+					tmp[i+1] = ub_h & 0x00FF;
+					tmp[i+2] = (ub_h & 0xFF00) >> 8;
+					printf("ub_h val(%d) =(0x%02x 0x%02x)\n",ub_h,tmp[i+1],tmp[i+2]);
+					goto end;
+				}
+				break;
+		}
+	}
+end:
+	/*assert(step == STEP_4);*/
+	printf("hid report is:\n");
+	for(i = 0 ; i < sizeof(hid_report_desc) ;i++) {
+		printf("0x%02x ",tmp[i]);
+		if(i % 10 == 0)
+			printf("\n");
+	}
+	printf("\n");
+}
 #endif
 
 static void *receive_loop(void *arg)
@@ -216,9 +439,16 @@ static void callback_hid(struct libusb_transfer *transfer)
 
 		android_transfer = libusb_alloc_transfer(0);
 
+		int s = 0;
+
+		printf("orig hid report data from mouse:\n");
+		for(s = 0 ; s <  transfer->actual_length; s ++) {
+			printf("0x%02x ",transfer->buffer[s]);
+		};
+		printf("\n");
 
 #if(TOUCHSCREEN_ENABLE == 1) 
-transfer->actual_length = sizeof(struct Report);
+		transfer->actual_length = sizeof(struct Report);
 
 		//set Report for each moving..
 		//(0,0) -->(1000,1000) 
@@ -238,6 +468,35 @@ transfer->actual_length = sizeof(struct Report);
 		else
 			report.status.bTipSwitch = 0;
 		counts ++;
+
+
+		
+		transfer->buffer = (unsigned char*)&report;
+#elif (TOUCHSCREEN_ENABLE == 2)
+		transfer->actual_length = sizeof(struct Report);
+
+		//set Report for each moving..
+		//(0,0) -->(1000,1000) 
+		//(100,100) -->按下　(900,900)-->放开
+		static unsigned short counts = 0;
+
+		struct Report report;
+		report.report_id = REPORT_ID;
+		if(counts != 0) {
+			report.wXData = counts * 4 % PHONE_HEIGHT;
+			report.wYData = counts * 4 % PHONE_WIDTH ;
+		} else 
+			report.wXData = report.wYData = 0;
+
+		if(report.wXData >= 200  && report.wXData <= 900) 
+			report.status.bTipSwitch = 1;
+		else
+			report.status.bTipSwitch = 0;
+		counts ++;
+
+		/*report.Width = PHONE_HEIGHT;*/
+		/*report.Height = PHONE_WIDTH;*/
+
 		transfer->buffer = (unsigned char*)&report;
 #endif
 		keybuf = malloc(transfer->actual_length + LIBUSB_CONTROL_SETUP_SIZE);
@@ -245,7 +504,6 @@ transfer->actual_length = sizeof(struct Report);
 		       transfer->actual_length);
 
 		printf("hid report data:\n");
-		int s = 0;
 		for(s = 0 ; s <  transfer->actual_length; s ++) {
 			printf("0x%02x ",transfer->buffer[s]);
 		}; 
@@ -404,14 +662,14 @@ int register_hid_callback(accessory_t * acc, hid_device * hid)
 	AxisSetting set;
 	set.css.base_x = 0 ;
 	set.css.base_y = 0 ;
-	set.css.view_width= 0 ;
-	set.css.view_height = set.css.full_height = 1920 ;
-	set.css.view_width = set.css.full_width = 1080 ;
+	set.css.view_height = set.css.full_height = PHONE_WIDTH ;
+	set.css.view_width = set.css.full_width = PHONE_HEIGHT;
 
-	set.pss.full_width =  1080;
-	set.pss.full_height =  1920;
+	set.pss.full_width =  PHONE_HEIGHT;
+	set.pss.full_height =  PHONE_WIDTH;
 
 	axis_init(&set,0);
+
 
 	keybuf = malloc(hid->packet_size);
 

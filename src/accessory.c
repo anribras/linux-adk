@@ -98,24 +98,28 @@ void accessory_main(accessory_t * acc)
 	//hid.descriptor_size =  sizeof(valid_mouse_report_descriptor);
 	//hid.handle = acc->handle;
 	//hid.endpoint_in = 
-#if 0
+#if 1
 	/* In case of Audio/HID support */
-	if (acc->pid >= AOA_AUDIO_PID) {
-		/* Audio warning */
-		printf("Device should now be recognized as valid ALSA card...\n");
-		printf("  => arecord -l\n");
+	/*if (acc->pid >= AOA_AUDIO_PID) {*/
+		/*[> Audio warning <]*/
+		/*printf("Device should now be recognized as valid ALSA card...\n");*/
+		/*printf("  => arecord -l\n");*/
 
-		/* HID handling */
-		if(search_hid(&hid, acc) == 0) {
+		
+	/*}*/
+/* HID handling */
+		if(search_hid(&hid) == 0) {
 			register_hid_callback(acc, &hid);
 			send_hid_descriptor(acc, &hid);
 		}
-	}
 #else
 
 	/* HID handling */
 	if(search_hid(&hid) == 0) {
 		register_hid_callback(acc, &hid);
+
+		set_hid_logical_range(1080,1920);
+		set_hid_physical_range(0,0);
 		send_hid_descriptor(acc, &hid);
 	}
 #endif
@@ -125,13 +129,14 @@ void accessory_main(accessory_t * acc)
 		uint8_t acc_buf[512];
 		int transferred, i;
 		int errors = 20;
-
+#if 0
 		printf("detach..\n");
 		libusb_set_auto_detach_kernel_driver(acc->handle,1);
 
 		
 		usleep(10000);
 		printf("claiming ...\n");
+#endif
 #if 1
 		/* Claiming first (accessory )interface from the opened device */
 		ret =
@@ -158,6 +163,7 @@ void accessory_main(accessory_t * acc)
 
 			ret =
 			    libusb_bulk_transfer(acc->handle,
+
 						 AOA_ACCESSORY_EP_IN, acc_buf,
 						 sizeof(acc_buf), &transferred,
 						 500);

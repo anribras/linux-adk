@@ -1,4 +1,4 @@
-cscope 15 /opt/resource/linux-adk/src -q 0000000313 0000035555
+cscope 15 /opt/resource/linux-adk/src -q 0000000336 0000040049
 	@/opt/resource/linux-adk/src/accessory.c
 
 21 
@@ -55,23 +55,7 @@ hid_devi˚
 hid
 ;
 
-103 i‡(
-acc
-->
-pid
- >
-AOA_AUDIO_PID
-) {
-
-105 
-	`¥ötf
-("Device shouldÇow beÑecognizedás valid ALSA card...\n");
-
-106 
-	`¥ötf
-(" =>árecord -l\n");
-
-109 if(
+111 if(
 	`£¨ch_hid
 (&
 hid
@@ -79,7 +63,7 @@ hid
 acc
 ) == 0) {
 
-110 
+112 
 	`ªgi°î_hid_ˇŒback
 (
 acc
@@ -87,7 +71,7 @@ acc
 hid
 );
 
-111 
+113 
 	`£nd_hid_des¸ùt‹
 (
 acc
@@ -95,13 +79,13 @@ acc
 hid
 );
 
-117 if(
+118 if(
 	`£¨ch_hid
 (&
 hid
 ) == 0) {
 
-118 
+119 
 	`ªgi°î_hid_ˇŒback
 (
 acc
@@ -109,7 +93,15 @@ acc
 hid
 );
 
-119 
+121 
+	`£t_hid_logiˇl_ønge
+(1080,1920);
+
+122 
+	`£t_hid_physiˇl_ønge
+(0,0);
+
+123 
 	`£nd_hid_des¸ùt‹
 (
 acc
@@ -117,7 +109,7 @@ acc
 hid
 );
 
-124 i‡((
+128 i‡((
 acc
 ->
 pid
@@ -127,27 +119,27 @@ AOA_AUDIO_ADB_PID
 AOA_AUDIO_PID
 )) {
 
-125 
+129 
 uöt8_t
  
 acc_buf
 [512];
 
-126 
+130 
 å™s„ºed
 , 
 i
 ;
 
-127 
+131 
 îr‹s
  = 20;
 
-129 
+133 
 	`¥ötf
 ("detach..\n");
 
-130 
+134 
 	`libusb_£t_auto_dëach_kî√l_drivî
 (
 acc
@@ -155,19 +147,19 @@ acc
 h™dÀ
 ,1);
 
-133 
+137 
 	`u¶ìp
 (10000);
 
-134 
+138 
 	`¥ötf
 ("claiming ...\n");
 
-137 
+141 
 ªt
  =
 
-138 
+142 
 	`libusb_˛aim_öãrÁ˚
 (
 acc
@@ -175,33 +167,33 @@ acc
 h™dÀ
 ,
 
-139 
+143 
 AOA_ACCESSORY_INTERFACE
 );
 
-140 i‡(
+144 i‡(
 ªt
  != 0) {
 
-141 
+145 
 	`¥ötf
 ("Eº‹ %d cœimög i¡îÁ˚...\n", 
 ªt
 );
 
-145 
+149 
 	`¥ötf
 ("SnoopingÜoop\n");
 
-147 
+151 
 t
  = 0;
 
-149 !
+153 !
 °›_acc
 ) {
 
-150 
+154 
 	`mem£t
 (
 acc_buf
@@ -209,11 +201,11 @@ acc_buf
 t
  % 512,(acc_buf));
 
-152 
+156 
 ªt
  =
 
-153 
+157 
 	`libusb_bulk_å™s„r
 (
 acc
@@ -221,29 +213,29 @@ acc
 h™dÀ
 ,
 
-154 
+158 
 AOA_ACCESSORY_EP_OUT
 , 
 acc_buf
 ,
 
-155 (
+159 (
 acc_buf
 ), &
 å™s„ºed
 ,
 
-157 
+161 
 	`¥ötf
 ("EP_OUTÑë(%d)\n",
 ªt
 );
 
-159 
+163 
 ªt
  =
 
-160 
+164 
 	`libusb_bulk_å™s„r
 (
 acc
@@ -251,59 +243,59 @@ acc
 h™dÀ
 ,
 
-161 
+166 
 AOA_ACCESSORY_EP_IN
 , 
 acc_buf
 ,
 
-162 (
+167 (
 acc_buf
 ), &
 å™s„ºed
 ,
 
-165 i‡(
+170 i‡(
 ªt
  < 0) {
 
-166 i‡(
+171 i‡(
 ªt
  =
 LIBUSB_ERROR_TIMEOUT
 ) {
 
-167 
+172 
 	`¥ötf
 ("timeout...\n");
 
-170 
+175 
 	`¥ötf
 ("bulkÅøns„∏îr‹ %d\n", 
 ªt
 );
 
-171 i‡(--
+176 i‡(--
 îr‹s
  == 0)
 
-174 
+179 
 	`¶ìp
 (1);
 
-179 
+184 
 	`¥ötf
 ("Re˚ived %d byãs\n", 
 å™s„ºed
 );
 
-180 
+185 
 i
  = 0; i < 
 å™s„ºed
 ;) {
 
-181 
+186 
 	`¥ötf
 ("%#2.2x ", 
 acc_buf
@@ -311,19 +303,19 @@ acc_buf
 i
 ++]);
 
-182 i‡(!(
+187 i‡(!(
 i
  % 8))
 
-183 
+188 
 	`¥ötf
 ("\n");
 
-185 
+190 
 	`¥ötf
 ("\n");
 
-190 i‡((
+195 i‡((
 acc
 ->
 pid
@@ -335,7 +327,7 @@ hid
 h™dÀ
 ))
 
-191 
+196 
 	`±hªad_joö
 (
 hid
@@ -345,7 +337,7 @@ rx_thªad
 NULL
 );
 
-192 
+197 
 	}
 }
 
@@ -2421,79 +2413,781 @@ devs
 
 	)
 
-36 
-	#TOUCHSCREEN_ENABLE
- (1)
+38 
+	#PHONE_WIDTH
+ (1080)
 
 	)
 
-38 #if(
+39 
+	#PHONE_HEIGHT
+ (1920)
+
+	)
+
+41 #if(
 TOUCHSCREEN_ENABLE
  == 1)
 
-39 c⁄° 
+42 
 	ghid_ªp‹t_desc
 [] = {
 
-45 0x85, 
+47 0x85, 
 REPORT_ID
 ,
 
-85 
+100 
 	sRï‹t
  {
 
-86 
+101 
 	mªp‹t_id
  ;
 
-88 
+103 
 	mbTùSwôch
  : 1;
 
-89 
+104 
 	mbInR™ge
  : 1;
 
-90 
+105 
 	mª£rved
  : 6;
 
-91 } 
+106 } 
 	m°©us
 ;
 
-92 
+107 
 	mwXD©a
 ;
 
-93 
+108 
 	mwYD©a
 ;
 
-97 *
+110 #ñi‡(
+TOUCHSCREEN_ENABLE
+ == 2)
+
+112 
+	#LOGICAL_MINIMUM_1
+ (0x15)
+
+	)
+
+113 
+	#LOGICAL_MAXIMUM_1
+ (0x25)
+
+	)
+
+114 
+	#LOGICAL_MINIMUM_2
+ (0x16)
+
+	)
+
+115 
+	#LOGICAL_MAXIMUM_2
+ (0x26)
+
+	)
+
+118 
+	#PHYSICAL_MINIMUM_1
+ (0x35)
+
+	)
+
+119 
+	#PHYSICAL_MAXIMUM_1
+ (0x45)
+
+	)
+
+120 
+	#PHYSICAL_MINIMUM_2
+ (0x36)
+
+	)
+
+121 
+	#PHYSICAL_MAXIMUM_2
+ (0x46)
+
+	)
+
+123 
+	ghid_ªp‹t_desc
+[] = {
+
+127 0x85, 
+REPORT_ID
+,
+
+154 
+LOGICAL_MINIMUM_2
+, 0x00,0xF8,
+
+155 
+LOGICAL_MAXIMUM_2
+, 0x00,0x08,
+
+156 
+PHYSICAL_MINIMUM_2
+, 0x00,0xF8,
+
+157 
+PHYSICAL_MAXIMUM_2
+, 0x00,0x08,
+
+163 
+LOGICAL_MINIMUM_2
+, 0x00,0xFC,
+
+164 
+LOGICAL_MAXIMUM_2
+, 0x00,0x04,
+
+165 
+PHYSICAL_MINIMUM_2
+, 0x00,0xF8,
+
+166 
+PHYSICAL_MAXIMUM_2
+, 0x00,0x08,
+
+176 
+	sRï‹t
+ {
+
+177 
+	mªp‹t_id
+ ;
+
+179 
+	mbTùSwôch
+ : 1;
+
+180 
+	mbInR™ge
+ : 1;
+
+181 
+	mª£rved
+ : 6;
+
+182 } 
+	m°©us
+;
+
+183 
+	mwXD©a
+;
+
+184 
+	mwYD©a
+;
+
+189 
+	$£t_hid_logiˇl_ønge
+(
+width
+, 
+height
+)
+
+191 * 
+tmp
+ = 
+hid_ªp‹t_desc
+;
+
+192 
+lb_w
+ = 0;
+
+193 
+ub_w
+ = 
+width
+;
+
+194 
+lb_h
+ = 0;
+
+195 
+ub_h
+ = 
+height
+;
+
+196 
+i
+;
+
+198 
+STEP_1
+,
+
+199 
+STEP_2
+,
+
+200 
+STEP_3
+,
+
+201 
+STEP_4
+,
+
+202 } 
+	t_STEP
+;
+
+203 
+°ï
+ = 
+STEP_1
+;
+
+204 
+i
+ = 0 ; i < (
+hid_ªp‹t_desc
+); i++) {
+
+206 
+°ï
+) {
+
+207 
+STEP_1
+:
+
+208 if(
+tmp
+[
+i
+] =
+LOGICAL_MINIMUM_2
+) {
+
+209 
+tmp
+[
+i
++1] = 
+lb_w
+ & 0x00FF;
+
+210 
+tmp
+[
+i
++2] = (
+lb_w
+ & 0xFF00) >> 8;
+
+211 
+	`¥ötf
+("lb_w vÆ(%dË=(0x%02x 0x%02x)",
+lb_w
+,
+tmp
+[
+i
++1],tmp[i+2]);
+
+212 
+°ï
+ = 
+STEP_2
+;
+
+215 
+STEP_2
+:
+
+216 if(
+tmp
+[
+i
+] =
+LOGICAL_MAXIMUM_2
+) {
+
+217 
+tmp
+[
+i
++1] = 
+ub_w
+ & 0x00FF;
+
+218 
+tmp
+[
+i
++2] = (
+ub_w
+ & 0xFF00) >> 8;
+
+219 
+	`¥ötf
+("ub_w vÆ(%dË=(0x%02x 0x%02x)",
+ub_w
+,
+tmp
+[
+i
++1],tmp[i+2]);
+
+220 
+°ï
+ = 
+STEP_3
+;
+
+223 
+STEP_3
+:
+
+224 if(
+tmp
+[
+i
+] =
+LOGICAL_MINIMUM_2
+) {
+
+225 
+tmp
+[
+i
++1] = 
+lb_h
+ & 0x00FF;
+
+226 
+tmp
+[
+i
++2] = (
+lb_h
+ & 0xFF00) >> 8;
+
+227 
+	`¥ötf
+("lb_h vÆ(%dË=(0x%02x 0x%02x)\n",
+lb_h
+,
+tmp
+[
+i
++1],tmp[i+2]);
+
+228 
+°ï
+ = 
+STEP_4
+;
+
+231 
+STEP_4
+:
+
+233 if(
+tmp
+[
+i
+] =
+LOGICAL_MAXIMUM_2
+) {
+
+234 
+tmp
+[
+i
++1] = 
+ub_h
+ & 0x00FF;
+
+235 
+tmp
+[
+i
++2] = (
+ub_h
+ & 0xFF00) >> 8;
+
+236 
+	`¥ötf
+("ub_h vÆ(%dË=(0x%02x 0x%02x)\n",
+ub_h
+,
+tmp
+[
+i
++1],tmp[i+2]);
+
+237 
+íd
+;
+
+242 
+íd
+:
+
+244 
+	`¥ötf
+("hidÑeport is:\n");
+
+245 
+i
+ = 0 ; i < (
+hid_ªp‹t_desc
+) ;i++) {
+
+246 
+	`¥ötf
+("0x%02x ",
+tmp
+[
+i
+]);
+
+247 if(
+i
+ % 10 == 0)
+
+248 
+	`¥ötf
+("\n");
+
+250 
+	`¥ötf
+("\n");
+
+251 
+	}
+}
+
+253 
+	$£t_hid_physiˇl_ønge
+(
+width
+, 
+height
+)
+
+255 * 
+tmp
+ = 
+hid_ªp‹t_desc
+;
+
+256 
+lb_w
+ = 0;
+
+257 
+ub_w
+ = 
+width
+;
+
+258 
+lb_h
+ = 0;
+
+259 
+ub_h
+ = 
+height
+;
+
+260 
+i
+;
+
+262 
+STEP_1
+,
+
+263 
+STEP_2
+,
+
+264 
+STEP_3
+,
+
+265 
+STEP_4
+,
+
+266 } 
+	t_STEP
+;
+
+267 
+°ï
+ = 
+STEP_1
+;
+
+268 
+i
+ = 0 ; i < (
+hid_ªp‹t_desc
+); i++) {
+
+270 
+°ï
+) {
+
+271 
+STEP_1
+:
+
+272 if(
+tmp
+[
+i
+] =
+PHYSICAL_MINIMUM_2
+) {
+
+273 
+tmp
+[
+i
++1] = 
+lb_w
+ & 0x00FF;
+
+274 
+tmp
+[
+i
++2] = (
+lb_w
+ & 0xFF00) >> 8;
+
+275 
+	`¥ötf
+("lb_w vÆ(%dË=(0x%02x 0x%02x)",
+lb_w
+,
+tmp
+[
+i
++1],tmp[i+2]);
+
+276 
+°ï
+ = 
+STEP_2
+;
+
+279 
+STEP_2
+:
+
+280 if(
+tmp
+[
+i
+] =
+PHYSICAL_MAXIMUM_2
+) {
+
+281 
+tmp
+[
+i
++1] = 
+ub_w
+ & 0x00FF;
+
+282 
+tmp
+[
+i
++2] = (
+ub_w
+ & 0xFF00) >> 8;
+
+283 
+	`¥ötf
+("ub_w vÆ(%dË=(0x%02x 0x%02x)",
+ub_w
+,
+tmp
+[
+i
++1],tmp[i+2]);
+
+284 
+°ï
+ = 
+STEP_3
+;
+
+287 
+STEP_3
+:
+
+288 if(
+tmp
+[
+i
+] =
+PHYSICAL_MINIMUM_2
+) {
+
+289 
+tmp
+[
+i
++1] = 
+lb_h
+ & 0x00FF;
+
+290 
+tmp
+[
+i
++2] = (
+lb_h
+ & 0xFF00) >> 8;
+
+291 
+	`¥ötf
+("lb_h vÆ(%dË=(0x%02x 0x%02x)\n",
+lb_h
+,
+tmp
+[
+i
++1],tmp[i+2]);
+
+292 
+°ï
+ = 
+STEP_4
+;
+
+295 
+STEP_4
+:
+
+296 if(
+tmp
+[
+i
+] =
+PHYSICAL_MAXIMUM_2
+) {
+
+297 
+tmp
+[
+i
++1] = 
+ub_h
+ & 0x00FF;
+
+298 
+tmp
+[
+i
++2] = (
+ub_h
+ & 0xFF00) >> 8;
+
+299 
+	`¥ötf
+("ub_h vÆ(%dË=(0x%02x 0x%02x)\n",
+ub_h
+,
+tmp
+[
+i
++1],tmp[i+2]);
+
+300 
+íd
+;
+
+305 
+íd
+:
+
+307 
+	`¥ötf
+("hidÑeport is:\n");
+
+308 
+i
+ = 0 ; i < (
+hid_ªp‹t_desc
+) ;i++) {
+
+309 
+	`¥ötf
+("0x%02x ",
+tmp
+[
+i
+]);
+
+310 if(
+i
+ % 10 == 0)
+
+311 
+	`¥ötf
+("\n");
+
+313 
+	`¥ötf
+("\n");
+
+314 
+	}
+}
+
+317 *
 	$ª˚ive_lo›
 (*
 ¨g
 )
 
-99 !
+319 !
 °›_acc
 ) {
 
-100 
+320 
 ªt
  = 0;
 
-101 
+321 
 i
 ;
 
-102 
+322 
 nfds
  = 1;
 
-103 
+323 
 timevÆ
  
 tv
@@ -2501,13 +3195,13 @@ tv
 zîo_tv
 ;
 
-104 c⁄° 
+324 c⁄° 
 libusb_pﬁlfd
  **
 pﬁl_li°
 ;
 
-105 
+325 
 fd_£t
  
 rfds
@@ -2517,31 +3211,31 @@ wfds
 efds
 ;
 
-106 
+326 
 tv
 .
 tv_£c
  = 0;
 
-107 
+327 
 tv
 .
 tv_u£c
  = 0;
 
-108 
+328 
 zîo_tv
 .
 tv_£c
  = 0;
 
-109 
+329 
 zîo_tv
 .
 tv_u£c
  = 0;
 
-111 
+331 
 ªt
  = 
 	`libusb_gë_√xt_timeout
@@ -2551,25 +3245,25 @@ NULL
 tv
 );
 
-112 i‡(
+332 i‡(
 ªt
  < 0) {
 
-113 i‡(
+333 i‡(
 ªt
 )
 
-114 
+334 
 	`¥ötf
 ("USBÉrror : %s\n",
 
-115 
+335 
 	`libusb_îr‹_«me
 (
 ªt
 ));
 
-119 i‡(
+339 i‡(
 ªt
  =1 && 
 tv
@@ -2579,7 +3273,7 @@ tv_£c
 tv_u£c
  == 0) {
 
-120 
+340 
 ªt
  = 
 	`libusb_h™dÀ_evíts_timeout_com∂ëed
@@ -2587,57 +3281,57 @@ tv_u£c
 NULL
 ,
 
-121 &
+341 &
 zîo_tv
 ,
 
-122 
+342 
 NULL
 );
 
-123 i‡(
+343 i‡(
 ªt
 ) {
 
-124 i‡(
+344 i‡(
 ªt
 )
 
-125 
+345 
 	`¥ötf
 ("USBÉrror : %s\n",
 
-126 
+346 
 	`libusb_îr‹_«me
 (
 ªt
 ));
 
-132 
+352 
 	`FD_ZERO
 (&
 rfds
 );
 
-133 
+353 
 	`FD_ZERO
 (&
 wfds
 );
 
-134 
+354 
 	`FD_ZERO
 (&
 efds
 );
 
-135 
+355 
 	`FD_SET
 (0, &
 rfds
 );
 
-136 
+356 
 pﬁl_li°
  = 
 	`libusb_gë_pﬁlfds
@@ -2645,11 +3339,11 @@ pﬁl_li°
 NULL
 );
 
-137 i‡(
+357 i‡(
 pﬁl_li°
 ) {
 
-138 
+358 
 i
  = 0; 
 pﬁl_li°
@@ -2657,13 +3351,13 @@ pﬁl_li°
 NULL
 ; i++) {
 
-139 c⁄° 
+359 c⁄° 
 libusb_pﬁlfd
  *
 cur_pﬁl
 ;
 
-141 
+361 
 cur_pﬁl
  = 
 pﬁl_li°
@@ -2671,7 +3365,7 @@ pﬁl_li°
 i
 ];
 
-142 
+362 
 nfds
  = 
 cur_pﬁl
@@ -2679,7 +3373,7 @@ cur_pﬁl
 fd
  >=Çfds
 
-143 ? 
+363 ? 
 cur_pﬁl
 ->
 fd
@@ -2687,7 +3381,7 @@ fd
 nfds
 ;
 
-144 i‡(
+364 i‡(
 cur_pﬁl
 ->
 evíts
@@ -2695,7 +3389,7 @@ evíts
 POLLIN
 )
 
-145 
+365 
 	`FD_SET
 (
 cur_pﬁl
@@ -2705,7 +3399,7 @@ fd
 rfds
 );
 
-146 i‡(
+366 i‡(
 cur_pﬁl
 ->
 evíts
@@ -2713,7 +3407,7 @@ evíts
 POLLOUT
 )
 
-147 
+367 
 	`FD_SET
 (
 cur_pﬁl
@@ -2723,13 +3417,13 @@ fd
 wfds
 );
 
-149 
+369 
 	`‰ì
 (
 pﬁl_li°
 );
 
-153 i‡(
+373 i‡(
 tv
 .
 tv_£c
@@ -2737,7 +3431,7 @@ tv_£c
 tv_u£c
  == 0)
 
-154 
+374 
 ªt
  = 
 	`£À˘
@@ -2753,7 +3447,7 @@ efds
 NULL
 );
 
-156 
+376 
 ªt
  = 
 	`£À˘
@@ -2769,25 +3463,25 @@ efds
 tv
 );
 
-158 i‡(
+378 i‡(
 libusb_h™dÀ_evíts_timeout_com∂ëed
 
 
-159 (
+379 (
 NULL
 , &
 zîo_tv
 , NULL))
 
-163  
+383  
 NULL
 ;
 
-164 
+384 
 	}
 }
 
-166 
+386 
 	$›í_devi˚
 (
 libusb_devi˚_h™dÀ
@@ -2795,7 +3489,7 @@ libusb_devi˚_h™dÀ
 h™dÀ
 ,
 
-167 
+387 
 libusb_devi˚
  * 
 devi˚
@@ -2803,19 +3497,19 @@ devi˚
 öãrÁ˚
 )
 
-169 
+389 
 kî√l_˛aimed
  = 0, 
 ªt
 ;
 
-171 
+391 
 	`libusb_ªf_devi˚
 (
 devi˚
 );
 
-172 
+392 
 ªt
  = 
 	`libusb_›í
@@ -2825,27 +3519,27 @@ devi˚
 h™dÀ
 );
 
-173 i‡(
+393 i‡(
 ªt
 ) {
 
-174 
+394 
 	`¥ötf
 ("U«bÀÅÿ›í usb devi˚ [%#08x]\n", 
 ªt
 );
 
-175 *
+395 *
 h™dÀ
  = 
 NULL
 ;
 
-179 
+399 
 	`¥ötf
 ("libusb_kernel_driver_active\n");
 
-180 
+400 
 ªt
  = 
 	`libusb_kî√l_drivî_a˘ive
@@ -2855,11 +3549,11 @@ h™dÀ
 öãrÁ˚
 );
 
-181 i‡(
+401 i‡(
 ªt
  == 1) {
 
-182 i‡(
+402 i‡(
 	`libusb_dëach_kî√l_drivî
 (*
 h™dÀ
@@ -2867,31 +3561,31 @@ h™dÀ
 öãrÁ˚
 )) {
 
-183 
+403 
 	`¥ötf
 ("UnableÅo grab usb device\n");
 
-184 
+404 
 	`libusb_˛o£
 (*
 h™dÀ
 );
 
-185 *
+405 *
 h™dÀ
  = 
 NULL
 ;
 
-188 
+408 
 kî√l_˛aimed
  = 1;
 
-191 
+411 
 	`¥ötf
 ("libusb_claim_interface\n");
 
-192 
+412 
 ªt
  = 
 	`libusb_˛aim_öãrÁ˚
@@ -2901,21 +3595,21 @@ h™dÀ
 öãrÁ˚
 );
 
-193 i‡(
+413 i‡(
 ªt
 ) {
 
-194 
+414 
 	`¥ötf
 ("FaûedÅÿ˛aim i¡îÁ˚ %d.\n", 
 öãrÁ˚
 );
 
-195 i‡(
+415 i‡(
 kî√l_˛aimed
 ) {
 
-196 
+416 
 	`libusb_©èch_kî√l_drivî
 (*
 h™dÀ
@@ -2923,27 +3617,27 @@ h™dÀ
 öãrÁ˚
 );
 
-197 
+417 
 kî√l_˛aimed
  = 0;
 
-199 
+419 
 	`libusb_˛o£
 (*
 h™dÀ
 );
 
-200 *
+420 *
 h™dÀ
  = 
 NULL
 ;
 
-205 
+425 
 	}
 }
 
-207 
+427 
 	$ˇŒback_hid
 (
 libusb_å™s„r
@@ -2951,7 +3645,7 @@ libusb_å™s„r
 å™s„r
 )
 
-209 
+429 
 ac˚ss‹y_t
  *
 acc
@@ -2961,11 +3655,11 @@ acc
 u£r_d©a
 ;
 
-210 
+430 
 rc
  = 0;
 
-212 i‡(
+432 i‡(
 å™s„r
 ->
 °©us
@@ -2973,31 +3667,61 @@ rc
 LIBUSB_TRANSFER_COMPLETED
 ) {
 
-213 
+433 
 libusb_å™s„r
  *
 ™droid_å™s„r
 ;
 
-214 *
+434 *
 keybuf
 ;
 
-215 
+435 
 rc
 ;
 
-217 
+437 
 ™droid_å™s„r
  = 
 	`libusb_Æloc_å™s„r
 (0);
 
-220 #if(
+439 
+s
+ = 0;
+
+441 
+	`¥ötf
+("orig hidÑeport data from mouse:\n");
+
+442 
+s
+ = 0 ; s < 
+å™s„r
+->
+a˘uÆ_Àngth
+; s ++) {
+
+443 
+	`¥ötf
+("0x%02x ",
+å™s„r
+->
+buf„r
+[
+s
+]);
+
+445 
+	`¥ötf
+("\n");
+
+447 #if(
 TOUCHSCREEN_ENABLE
  == 1)
 
-221 
+448 
 å™s„r
 ->
 a˘uÆ_Àngth
@@ -3005,17 +3729,17 @@ a˘uÆ_Àngth
 Rï‹t
 );
 
-226 
+453 
 cou¡s
  = 0;
 
-228 
+455 
 Rï‹t
  
 ªp‹t
 ;
 
-229 
+456 
 ªp‹t
 .
 ªp‹t_id
@@ -3023,11 +3747,11 @@ Rï‹t
 REPORT_ID
 ;
 
-230 if(
+457 if(
 cou¡s
  != 0) {
 
-231 
+458 
 ªp‹t
 .
 wXD©a
@@ -3035,7 +3759,7 @@ wXD©a
 cou¡s
  % 1080;
 
-232 
+459 
 ªp‹t
 .
 wYD©a
@@ -3043,7 +3767,7 @@ wYD©a
 cou¡s
  * 1920 / 1080 % 1920 ;
 
-234 
+461 
 ªp‹t
 .
 wXD©a
@@ -3051,13 +3775,13 @@ wXD©a
 wYD©a
  = 0;
 
-236 if(
+463 if(
 ªp‹t
 .
 wXD©a
  >= 200 &&Ñeport.wXData <= 900)
 
-237 
+464 
 ªp‹t
 .
 °©us
@@ -3065,7 +3789,7 @@ wXD©a
 bTùSwôch
  = 1;
 
-239 
+466 
 ªp‹t
 .
 °©us
@@ -3073,11 +3797,11 @@ bTùSwôch
 bTùSwôch
  = 0;
 
-240 
+467 
 cou¡s
  ++;
 
-241 
+471 
 å™s„r
 ->
 buf„r
@@ -3085,7 +3809,103 @@ buf„r
 ªp‹t
 ;
 
-243 
+472 #ñi‡(
+TOUCHSCREEN_ENABLE
+ == 2)
+
+473 
+å™s„r
+->
+a˘uÆ_Àngth
+ = (
+Rï‹t
+);
+
+478 
+cou¡s
+ = 0;
+
+480 
+Rï‹t
+ 
+ªp‹t
+;
+
+481 
+ªp‹t
+.
+ªp‹t_id
+ = 
+REPORT_ID
+;
+
+482 if(
+cou¡s
+ != 0) {
+
+483 
+ªp‹t
+.
+wXD©a
+ = 
+cou¡s
+ * 4 % 
+PHONE_HEIGHT
+;
+
+484 
+ªp‹t
+.
+wYD©a
+ = 
+cou¡s
+ * 4 % 
+PHONE_WIDTH
+ ;
+
+486 
+ªp‹t
+.
+wXD©a
+ =Ñï‹t.
+wYD©a
+ = 0;
+
+488 if(
+ªp‹t
+.
+wXD©a
+ >= 200 &&Ñeport.wXData <= 900)
+
+489 
+ªp‹t
+.
+°©us
+.
+bTùSwôch
+ = 1;
+
+491 
+ªp‹t
+.
+°©us
+.
+bTùSwôch
+ = 0;
+
+492 
+cou¡s
+ ++;
+
+497 
+å™s„r
+->
+buf„r
+ = (*)&
+ªp‹t
+;
+
+499 
 keybuf
  = 
 	`mÆloc
@@ -3097,7 +3917,7 @@ a˘uÆ_Àngth
 LIBUSB_CONTROL_SETUP_SIZE
 );
 
-244 
+500 
 	`mem˝y
 (
 keybuf
@@ -3109,21 +3929,17 @@ LIBUSB_CONTROL_SETUP_SIZE
 buf„r
 ,
 
-245 
+501 
 å™s„r
 ->
 a˘uÆ_Àngth
 );
 
-247 
+503 
 	`¥ötf
 ("hidÑeport data:\n");
 
-248 
-s
- = 0;
-
-249 
+504 
 s
  = 0 ; s < 
 å™s„r
@@ -3131,7 +3947,7 @@ s
 a˘uÆ_Àngth
 ; s ++) {
 
-250 
+505 
 	`¥ötf
 ("0x%02x ",
 å™s„r
@@ -3141,35 +3957,35 @@ buf„r
 s
 ]);
 
-252 
+507 
 	`¥ötf
 ("\n");
 
-255 
+510 
 	`libusb_fûl_c⁄åﬁ_£tup
 (
 keybuf
 ,
 
-256 
+511 
 LIBUSB_ENDPOINT_OUT
  |
 
-257 
+512 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-258 
+513 
 AOA_SEND_HID_EVENT
 , 1, 0,
 
-259 
+514 
 å™s„r
 ->
 a˘uÆ_Àngth
 );
 
-261 
+516 
 	`libusb_fûl_c⁄åﬁ_å™s„r
 (
 ™droid_å™s„r
@@ -3179,25 +3995,25 @@ acc
 h™dÀ
 ,
 
-262 
+517 
 keybuf
 , 
 NULL
 , NULL, 0);
 
-264 
+519 
 ™droid_å™s„r
 ->
 Êags
  =
 
-265 
+520 
 LIBUSB_TRANSFER_FREE_BUFFER
  | 
 LIBUSB_TRANSFER_FREE_TRANSFER
 ;
 
-267 
+522 
 rc
  = 
 	`libusb_submô_å™s„r
@@ -3205,11 +4021,11 @@ rc
 ™droid_å™s„r
 );
 
-268 i‡(
+523 i‡(
 rc
 )
 
-269 
+524 
 	`¥ötf
 ("USBÉº‹ : %s\n", 
 	`libusb_îr‹_«me
@@ -3217,7 +4033,7 @@ rc
 rc
 ));
 
-271 
+526 
 rc
  = 
 	`libusb_submô_å™s„r
@@ -3225,11 +4041,11 @@ rc
 å™s„r
 );
 
-272 i‡(
+527 i‡(
 rc
 )
 
-273 
+528 
 	`¥ötf
 ("USBÉº‹ : %s\n", 
 	`libusb_îr‹_«me
@@ -3237,7 +4053,7 @@ rc
 rc
 ));
 
-275 } i‡(
+530 } i‡(
 å™s„r
 ->
 °©us
@@ -3245,7 +4061,7 @@ rc
 LIBUSB_TRANSFER_TIMED_OUT
 ) {
 
-276 
+531 
 rc
  = 
 	`libusb_submô_å™s„r
@@ -3253,11 +4069,11 @@ rc
 å™s„r
 );
 
-277 i‡(
+532 i‡(
 rc
 )
 
-278 
+533 
 	`¥ötf
 ("USBÉº‹ : %s\n", 
 	`libusb_îr‹_«me
@@ -3265,11 +4081,11 @@ rc
 rc
 ));
 
-280 
+535 
 	}
 }
 
-282 
+537 
 	$£¨ch_hid
 (
 hid_devi˚
@@ -3277,41 +4093,41 @@ hid_devi˚
 hid
 )
 
-284 
+539 
 libusb_devi˚
  **
 li°
 ;
 
-285 
+540 
 libusb_devi˚_des¸ùt‹
  
 desc
 ;
 
-286 
+541 
 ssize_t
  
 ˙t
 ;
 
-287 
+542 
 ssize_t
  
 i
  = 0;
 
-288 
+543 
 j
 ;
 
-289 
+544 
 libusb_devi˚
  *
 devi˚
 ;
 
-291 
+546 
 hid
 ->
 h™dÀ
@@ -3319,7 +4135,7 @@ h™dÀ
 NULL
 ;
 
-294 
+549 
 ˙t
  = 
 	`libusb_gë_devi˚_li°
@@ -3329,21 +4145,21 @@ NULL
 li°
 );
 
-295 i‡(
+550 i‡(
 ˙t
  < 0)
 
-296 
+551 
 îr‹0
 ;
 
-298 
+553 
 i
  = 0; i < 
 ˙t
 ; i++) {
 
-299 
+554 
 devi˚
  = 
 li°
@@ -3351,11 +4167,11 @@ li°
 i
 ];
 
-300 
+555 
 r
 ;
 
-302 
+557 
 	`¥ötf
 ("˙t(%dËi(%dË\n",
 ˙t
@@ -3363,7 +4179,7 @@ r
 i
 );
 
-304 
+559 
 r
  = 
 	`libusb_gë_devi˚_des¸ùt‹
@@ -3373,11 +4189,11 @@ devi˚
 desc
 );
 
-305 i‡(
+560 i‡(
 r
  < 0)
 
-308 
+563 
 	`¥ötf
 ("desc.bDevi˚Cœs†%d\n",
 desc
@@ -3385,7 +4201,7 @@ desc
 bDevi˚Cœss
 );
 
-309 i‡(
+564 i‡(
 desc
 .
 bDevi˚Cœss
@@ -3393,11 +4209,11 @@ bDevi˚Cœss
 LIBUSB_CLASS_HID
 ) {
 
-310 
+565 
 found
 ;
 
-312 } i‡(
+567 } i‡(
 desc
 .
 bDevi˚Cœss
@@ -3405,21 +4221,21 @@ bDevi˚Cœss
 LIBUSB_CLASS_PER_INTERFACE
 ) {
 
-313 
+568 
 libusb_c⁄fig_des¸ùt‹
  *
 cuºít_c⁄fig
 ;
 
-314 
+569 
 r
 ;
 
-316 
+571 
 	`¥ötf
 ("libusb_get_active_config_descriptor\n");
 
-317 
+572 
 r
  = 
 	`libusb_gë_a˘ive_c⁄fig_des¸ùt‹
@@ -3427,25 +4243,25 @@ r
 devi˚
 ,
 
-318 &
+573 &
 cuºít_c⁄fig
 );
 
-319 i‡(
+574 i‡(
 r
  < 0) {
 
-320 
+575 
 	`¥ötf
 ("gëá˘ivêdes¯îr‹(%d)",
 r
 );
 
-323 
+578 
 	`¥ötf
 ("parse hid cfg interface\n");
 
-327 
+582 
 	`¥ötf
 ("bNumI¡îÁ˚s(%d)\n",
 cuºít_c⁄fig
@@ -3453,7 +4269,7 @@ cuºít_c⁄fig
 bNumI¡îÁ˚s
 );
 
-329 
+584 
 j
  = 0; j < 
 cuºít_c⁄fig
@@ -3461,11 +4277,11 @@ cuºít_c⁄fig
 bNumI¡îÁ˚s
 ; j++) {
 
-330 
+585 
 k
 ;
 
-331 
+586 
 	`¥ötf
 ("num_Æt£âög(%d)\n",
 cuºít_c⁄fig
@@ -3477,19 +4293,19 @@ j
 num_Æt£âög
 );
 
-332 
+587 
 k
  = 0;
 
-333 
+588 
 k
  <
 
-334 
+589 
 cuºít_c⁄fig
 ->
 
-335 
+590 
 öãrÁ˚
 [
 j
@@ -3499,11 +4315,11 @@ num_Æt£âög
 k
 ++) {
 
-336 i‡(
+591 i‡(
 cuºít_c⁄fig
 ->
 
-337 
+592 
 öãrÁ˚
 [
 j
@@ -3513,31 +4329,31 @@ j
 k
 ].
 
-338 
+593 
 bI¡îÁ˚Cœss
  ==
 
-339 
+594 
 LIBUSB_CLASS_HID
 ) {
 
-340 
+595 
 hid
 ->
 ídpoöt_ö
  =
 
-341 
+596 
 cuºít_c⁄fig
 ->
 öãrÁ˚
 
 
-342 [
+597 [
 j
 ].
 
-343 
+598 
 Æt£âög
 [
 k
@@ -3545,27 +4361,27 @@ k
 ídpoöt
 
 
-344 [0].
+599 [0].
 bEndpoötAddªss
 ;
 
-345 
+600 
 hid
 ->
 ∑ckë_size
  =
 
-346 
+601 
 cuºít_c⁄fig
 ->
 öãrÁ˚
 
 
-347 [
+602 [
 j
 ].
 
-348 
+603 
 Æt£âög
 [
 k
@@ -3573,11 +4389,11 @@ k
 ídpoöt
 [0].
 
-349 
+604 
 wMaxPackëSize
 ;
 
-350 
+605 
 	`¥ötf
 ("£àídpoöt(0x%x)\n",
 hid
@@ -3585,43 +4401,43 @@ hid
 ídpoöt_ö
 );
 
-351 
+606 
 found
 ;
 
-355 
+610 
 	`¥ötf
 ("libusb_free_config_descriptor\n");
 
-356 
+611 
 	`libusb_‰ì_c⁄fig_des¸ùt‹
 (
 cuºít_c⁄fig
 );
 
-360 
+615 
 	`¥ötf
 ("found ...\n");
 
-361 
+616 
 found
 :
 
-362 i‡(
+617 i‡(
 i
  =
 ˙t
 )
 
-363 
+618 
 îr‹0
 ;
 
-365 
+620 
 	`¥ötf
 ("open_device...\n");
 
-366 i‡(
+621 i‡(
 	`›í_devi˚
 (&
 hid
@@ -3633,15 +4449,15 @@ devi˚
 j
 ) < 0)
 
-367 
+622 
 îr‹0
 ;
 
-370 
+625 
 	`¥ötf
 ("GET_DESCRIPTOR...\n");
 
-371 
+626 
 hid
 ->
 des¸ùt‹_size
@@ -3651,45 +4467,45 @@ des¸ùt‹_size
 h™dÀ
 ,
 
-372 
+627 
 LIBUSB_ENDPOINT_IN
  |
 
-373 
+628 
 LIBUSB_RECIPIENT_INTERFACE
 ,
 
-374 
+629 
 LIBUSB_REQUEST_GET_DESCRIPTOR
 ,
 
-375 
+630 
 LIBUSB_DT_REPORT
  << 8, 0,
 
-376 
+631 
 hid
 ->
 des¸ùt‹
 , 256, 0);
 
-377 i‡(
+632 i‡(
 hid
 ->
 des¸ùt‹_size
  < 0)
 
-378 
+633 
 îr‹1
 ;
 
-380 
+635 
 	`libusb_‰ì_devi˚_li°
 (
 li°
 , 1);
 
-381 
+636 
 	`¥ötf
 ("=> found HID devi˚ vid 0x%xÖid 0x%x\n", 
 desc
@@ -3697,21 +4513,21 @@ desc
 idVíd‹
 ,
 
-382 
+637 
 desc
 .
 idProdu˘
 );
 
-383 
+638 
 s
  = 0;
 
-384 
+639 
 	`¥ötf
 ("descriptor: \n");
 
-385 
+640 
 s
  = 0 ; s < 
 hid
@@ -3719,7 +4535,7 @@ hid
 des¸ùt‹_size
 ; s ++) {
 
-386 
+641 
 	`¥ötf
 ("0x%02x ",
 hid
@@ -3729,15 +4545,15 @@ des¸ùt‹
 s
 ]);
 
-388 
+643 
 	`¥ötf
 ("\n");
 
-391 
+646 
 îr‹1
 :
 
-392 
+647 
 	`libusb_˛o£
 (
 hid
@@ -3745,21 +4561,21 @@ hid
 h™dÀ
 );
 
-393 
+648 
 îr‹0
 :
 
-394 
+649 
 	`libusb_‰ì_devi˚_li°
 (
 li°
 , 1);
 
-396 
+651 
 	}
 }
 
-398 
+653 
 	$ªgi°î_hid_ˇŒback
 (
 ac˚ss‹y_t
@@ -3771,27 +4587,27 @@ hid_devi˚
 hid
 )
 
-400 
+655 
 libusb_å™s„r
  *
 hid_å™s„r
 ;
 
-401 *
+656 *
 keybuf
 ;
 
-402 
+657 
 rc
 ;
 
-404 
+659 
 AxisSëtög
  
 £t
 ;
 
-405 
+660 
 £t
 .
 css
@@ -3799,7 +4615,7 @@ css
 ba£_x
  = 0 ;
 
-406 
+661 
 £t
 .
 css
@@ -3807,15 +4623,7 @@ css
 ba£_y
  = 0 ;
 
-407 
-£t
-.
-css
-.
-võw_width
-= 0 ;
-
-408 
+662 
 £t
 .
 css
@@ -3823,9 +4631,11 @@ css
 võw_height
  = së.css.
 fuŒ_height
- = 1920 ;
+ = 
+PHONE_WIDTH
+ ;
 
-409 
+663 
 £t
 .
 css
@@ -3833,31 +4643,37 @@ css
 võw_width
  = së.css.
 fuŒ_width
- = 1080 ;
+ = 
+PHONE_HEIGHT
+;
 
-411 
+665 
 £t
 .
 pss
 .
 fuŒ_width
- = 1080;
+ = 
+PHONE_HEIGHT
+;
 
-412 
+666 
 £t
 .
 pss
 .
 fuŒ_height
- = 1920;
+ = 
+PHONE_WIDTH
+;
 
-414 
+668 
 	`axis_öô
 (&
 £t
 ,0);
 
-416 
+671 
 keybuf
  = 
 	`mÆloc
@@ -3867,19 +4683,19 @@ hid
 ∑ckë_size
 );
 
-418 
+673 
 hid_å™s„r
  = 
 	`libusb_Æloc_å™s„r
 (0);
 
-419 i‡(
+674 i‡(
 hid_å™s„r
  =
 NULL
 ) {
 
-420 
+675 
 	`libusb_˛o£
 (
 hid
@@ -3887,7 +4703,7 @@ hid
 h™dÀ
 );
 
-424 
+679 
 	`libusb_fûl_öãºu±_å™s„r
 (
 hid_å™s„r
@@ -3897,13 +4713,13 @@ hid
 h™dÀ
 ,
 
-425 
+680 
 hid
 ->
 ídpoöt_ö
 ,
 
-426 
+681 
 keybuf
 , 
 hid
@@ -3913,11 +4729,11 @@ hid
 ˇŒback_hid
 ,
 
-427 
+682 
 acc
 , 0);
 
-429 
+684 
 rc
  = 
 	`libusb_submô_å™s„r
@@ -3925,15 +4741,15 @@ rc
 hid_å™s„r
 );
 
-430 i‡(
+685 i‡(
 rc
  != 0) {
 
-431 i‡(
+686 i‡(
 rc
 )
 
-432 
+687 
 	`¥ötf
 ("USBÉº‹ : %s\n", 
 	`libusb_îr‹_«me
@@ -3941,7 +4757,7 @@ rc
 rc
 ));
 
-433 
+688 
 	`libusb_˛o£
 (
 hid
@@ -3949,11 +4765,11 @@ hid
 h™dÀ
 );
 
-438 
+693 
 	}
 }
 
-440 
+695 
 	$£nd_hid_des¸ùt‹
 (
 ac˚ss‹y_t
@@ -3965,15 +4781,15 @@ hid_devi˚
 hid
 )
 
-442 
+697 
 ªt
 ;
 
-444 
+699 
 	`¥ötf
 ("register hid\n");
 
-445 
+700 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -3985,21 +4801,21 @@ h™dÀ
 LIBUSB_ENDPOINT_OUT
  |
 
-446 
+701 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-447 #ifde‡
+702 #ifde‡
 TOUCHSCREEN_ENABLE
 
 
-448 
+703 
 AOA_REGISTER_HID
 , 1, (
 hid_ªp‹t_desc
 ),
 
-450 
+705 
 AOA_REGISTER_HID
 , 1, 
 hid
@@ -4007,25 +4823,25 @@ hid
 des¸ùt‹_size
 ,
 
-452 
+707 
 NULL
 , 0, 0);
 
-453 i‡(
+708 i‡(
 ªt
  < 0) {
 
-454 
+709 
 	`¥ötf
 ("couldn'tÑegister HID device onÅheándroid device : %s\n",
 
-455 
+710 
 	`libusb_îr‹_«me
 (
 ªt
 ));
 
-456 
+711 
 	`libusb_˛o£
 (
 hid
@@ -4033,11 +4849,11 @@ hid
 h™dÀ
 );
 
-460 
+715 
 	`¥ötf
 ("send hidÑeport\n");
 
-461 
+716 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -4049,23 +4865,23 @@ h™dÀ
 LIBUSB_ENDPOINT_OUT
  |
 
-462 
+717 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-463 
+718 
 AOA_SET_HID_REPORT_DESC
 , 1, 0,
 
-464 #ifde‡
+719 #ifde‡
 TOUCHSCREEN_ENABLE
 
 
-465 
+720 
 hid_ªp‹t_desc
 , (hid_report_desc), 0);
 
-467 
+722 
 hid
 ->
 des¸ùt‹
@@ -4073,15 +4889,15 @@ des¸ùt‹
 des¸ùt‹_size
 , 0);
 
-469 i‡(
+724 i‡(
 ªt
  < 0) {
 
-470 
+725 
 	`¥ötf
 ("couldn't send HID descriptorÅoÅheándroid device\n");
 
-471 
+726 
 	`libusb_˛o£
 (
 hid
@@ -4089,7 +4905,7 @@ hid
 h™dÀ
 );
 
-475 
+730 
 	`±hªad_¸óã
 (&
 hid
@@ -4101,7 +4917,7 @@ NULL
 ª˚ive_lo›
 , NULL);
 
-478 
+733 
 	}
 }
 
@@ -4229,81 +5045,75 @@ acc
 	g°›_acc
  = 0;
 
-36 
-	#Víd‹_Meizu
- (0x2717)
-
-	)
-
-44 c⁄° 
+46 c⁄° 
 ac˚ss‹y_t
  
 	gacc_deÁu…
  = {
 
-45 .
+47 .
 devi˚
- = "2717:0360",
+ = "2a45:2008",
 
-46 .
+48 .
 	gm™uÁ˘uªr
  = "Hello Inc",
 
-47 .
+49 .
 	gmodñ
  = "HelloWorldModel",
 
-48 .
+50 .
 	gvîsi⁄
  = "2.0",
 
-49 .
+51 .
 	gdes¸ùti⁄
  = "Demo ABS2013",
 
-50 .
+52 .
 	guæ
  = "https://github.com/gibsson",
 
-51 .
+53 .
 	g£rül
  = "0000000012345678",
 
-54 c⁄° 
+57 c⁄° 
 ac˚ss‹y_t
  
-	gacc_deÁu…
+acc_deÁu…
  = {
 
-55 .
+58 .
 devi˚
- = "2b0e:1764",
+ = "05c6:901d",
 
-56 .
+59 .
 	gm™uÁ˘uªr
  = "leautolinknetworks",
 
-57 .
+60 .
 	gmodñ
  = "ecolink",
 
-58 .
+61 .
 	gvîsi⁄
- = "2.0",
+ = "01",
 
-59 .
+62 .
 	gdes¸ùti⁄
- = "Demo ABS2013",
+ = "baby",
 
-60 .
+63 .
 	guæ
  = "https://github.com/gibsson",
 
-61 .
+64 .
 	g£rül
  = "0000000012345678",
 
-66 
+69 
 is_ac˚ss‹y_¥e£¡
 (
 ac˚ss‹y_t
@@ -4311,7 +5121,7 @@ ac˚ss‹y_t
 acc
 );
 
-67 
+70 
 öô_ac˚ss‹y
 (
 ac˚ss‹y_t
@@ -4319,7 +5129,7 @@ ac˚ss‹y_t
 acc
 );
 
-68 
+71 
 föi_ac˚ss‹y
 (
 ac˚ss‹y_t
@@ -4327,65 +5137,93 @@ ac˚ss‹y_t
 acc
 );
 
-70 
-	$show_hñp
-(*
-«me
+73 * 
+	$utf8
+(c⁄° *
+°r
 )
 
-72 
-¥ötf
+75 *
+utf8
+;
 
+76 
+utf8
+ = (*)
+	`mÆloc
+(1+(2*
+	`°æí
+(
+°r
+)));
 
-91 "\t-h, --hñp\n\t\tShowÅhi†hñ∞™dÉxô.\n", 
-«me
-);
+78 i‡(
+utf8
+) {
 
-93 
+79 *
+c
+ = 
+utf8
+;
+
+80 ; *
+°r
+; ++str) {
+
+81 i‡(*
+°r
+ & 0x80) {
+
+82 *
+c
+++ = *
+°r
+;
+
+84 *
+c
+++ = (Ë(0xc0 | (Ë*
+°r
+ >> 6);
+
+85 *
+c
+++ = (Ë(0x80 | (*
+°r
+ & 0x3f));
+
+88 *
+c
+++ = '\0';
+
+90  
+utf8
+;
+
+91 
 	}
 }
 
-95 
-	$show_vîsi⁄
-(*
-«me
-)
-
-97 
-	`¥ötf
-("%†v%s\ƒï‹àbug†tÿ%s\n", 
-«me
-, 
-PACKAGE_VERSION
-,
-
-98 
-PACKAGE_BUGREPORT
-);
-
-100 
-	}
-}
-
-102 
+94 
 	$sig«l_h™dÀr
 (
 signo
 )
 
-104 
+96 
 	`¥ötf
 ("SIGINT: Closingáccessory\n");
 
-105 
+97 
 °›_acc
  = 1;
 
-106 
+98 
 	}
 }
 
-108 
+100 
 	$maö
 (
 ¨gc
@@ -4393,15 +5231,15 @@ signo
 ¨gv
 [])
 
-110 
+102 
 ¨g_cou¡
  = 1;
 
-111 
+103 
 no_≠p
  = 0;
 
-112 
+104 
 ac˚ss‹y_t
  
 acc
@@ -4409,11 +5247,11 @@ acc
 NULL
 , NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL,
 
-113 
+105 
 NULL
 , NULL
 
-116 i‡(
+108 i‡(
 	`sig«l
 (
 SIGINT
@@ -4423,17 +5261,17 @@ sig«l_h™dÀr
 SIG_ERR
 )
 
-117 
+109 
 	`¥ötf
 ("Cannot setupá signal handler...\n");
 
-120 
+112 
 ¨g_cou¡
  < 
 ¨gc
 ) {
 
-121 i‡((
+113 i‡((
 	`°rcmp
 (
 ¨gv
@@ -4441,7 +5279,7 @@ SIG_ERR
 ¨g_cou¡
 ], "-d") == 0)
 
-122 || (
+114 || (
 	`°rcmp
 (
 ¨gv
@@ -4449,10 +5287,62 @@ SIG_ERR
 ¨g_cou¡
 ], "--device") == 0)) {
 
-123 
+115 
 acc
 .
 devi˚
+ = 
+¨gv
+[++
+¨g_cou¡
+];
+
+116 } i‡((
+	`°rcmp
+(
+¨gv
+[
+¨g_cou¡
+], "-D") == 0)
+
+117 || (
+	`°rcmp
+(
+¨gv
+[
+¨g_cou¡
+], "--description")
+
+119 
+acc
+.
+des¸ùti⁄
+ = 
+¨gv
+[++
+¨g_cou¡
+];
+
+120 } i‡((
+	`°rcmp
+(
+¨gv
+[
+¨g_cou¡
+], "-m") == 0)
+
+121 || (
+	`°rcmp
+(
+¨gv
+[
+¨g_cou¡
+], "--manufacturer")
+
+123 
+acc
+.
+m™uÁ˘uªr
  = 
 ¨gv
 [++
@@ -4465,7 +5355,7 @@ devi˚
 ¨gv
 [
 ¨g_cou¡
-], "-D") == 0)
+], "-M") == 0)
 
 125 || (
 	`°rcmp
@@ -4473,61 +5363,9 @@ devi˚
 ¨gv
 [
 ¨g_cou¡
-], "--description")
-
-127 
-acc
-.
-des¸ùti⁄
- = 
-¨gv
-[++
-¨g_cou¡
-];
-
-128 } i‡((
-	`°rcmp
-(
-¨gv
-[
-¨g_cou¡
-], "-m") == 0)
-
-129 || (
-	`°rcmp
-(
-¨gv
-[
-¨g_cou¡
-], "--manufacturer")
-
-131 
-acc
-.
-m™uÁ˘uªr
- = 
-¨gv
-[++
-¨g_cou¡
-];
-
-132 } i‡((
-	`°rcmp
-(
-¨gv
-[
-¨g_cou¡
-], "-M") == 0)
-
-133 || (
-	`°rcmp
-(
-¨gv
-[
-¨g_cou¡
 ], "--model") == 0)) {
 
-134 
+126 
 acc
 .
 modñ
@@ -4537,7 +5375,7 @@ modñ
 ¨g_cou¡
 ];
 
-135 } i‡((
+127 } i‡((
 	`°rcmp
 (
 ¨gv
@@ -4545,7 +5383,7 @@ modñ
 ¨g_cou¡
 ], "-n") == 0)
 
-136 || (
+128 || (
 	`°rcmp
 (
 ¨gv
@@ -4553,7 +5391,7 @@ modñ
 ¨g_cou¡
 ], "--versionnumber")
 
-138 
+130 
 acc
 .
 vîsi⁄
@@ -4563,7 +5401,7 @@ vîsi⁄
 ¨g_cou¡
 ];
 
-139 } i‡((
+131 } i‡((
 	`°rcmp
 (
 ¨gv
@@ -4571,7 +5409,7 @@ vîsi⁄
 ¨g_cou¡
 ], "-N") == 0)
 
-140 || (
+132 || (
 	`°rcmp
 (
 ¨gv
@@ -4579,11 +5417,11 @@ vîsi⁄
 ¨g_cou¡
 ], "--no_app") == 0)) {
 
-141 
+133 
 no_≠p
  = 1;
 
-142 } i‡((
+134 } i‡((
 	`°rcmp
 (
 ¨gv
@@ -4591,7 +5429,7 @@ no_≠p
 ¨g_cou¡
 ], "-s") == 0)
 
-143 || (
+135 || (
 	`°rcmp
 (
 ¨gv
@@ -4599,7 +5437,7 @@ no_≠p
 ¨g_cou¡
 ], "--serial") == 0)) {
 
-144 
+136 
 acc
 .
 £rül
@@ -4609,7 +5447,7 @@ acc
 ¨g_cou¡
 ];
 
-145 } i‡((
+137 } i‡((
 	`°rcmp
 (
 ¨gv
@@ -4617,7 +5455,7 @@ acc
 ¨g_cou¡
 ], "-u") == 0)
 
-146 || (
+138 || (
 	`°rcmp
 (
 ¨gv
@@ -4625,7 +5463,7 @@ acc
 ¨g_cou¡
 ], "--url") == 0)) {
 
-147 
+139 
 acc
 .
 uæ
@@ -4635,7 +5473,7 @@ uæ
 ¨g_cou¡
 ];
 
-148 } i‡((
+140 } i‡((
 	`°rcmp
 (
 ¨gv
@@ -4643,7 +5481,7 @@ uæ
 ¨g_cou¡
 ], "-v") == 0)
 
-149 || (
+141 || (
 	`°rcmp
 (
 ¨gv
@@ -4651,37 +5489,25 @@ uæ
 ¨g_cou¡
 ], "--version") == 0)) {
 
-150 
-	`show_vîsi⁄
-(
-¨gv
-[0]);
-
-151 
+143 
 	`exô
 (1);
 
-153 
-	`show_hñp
-(
-¨gv
-[0]);
-
-154 
+146 
 	`exô
 (1);
 
-156 
+148 
 ¨g_cou¡
 ++;
 
-160 i‡(!
+152 i‡(!
 acc
 .
 devi˚
 )
 
-161 
+153 
 acc
 .
 devi˚
@@ -4689,13 +5515,13 @@ devi˚
 acc_deÁu…
 .device;
 
-162 i‡(!
+154 i‡(!
 acc
 .
 des¸ùti⁄
 )
 
-163 
+155 
 acc
 .
 des¸ùti⁄
@@ -4703,7 +5529,7 @@ des¸ùti⁄
 acc_deÁu…
 .description;
 
-164 i‡(!
+156 i‡(!
 acc
 .
 m™uÁ˘uªr
@@ -4711,7 +5537,7 @@ m™uÁ˘uªr
 no_≠p
 )
 
-165 
+157 
 acc
 .
 m™uÁ˘uªr
@@ -4719,7 +5545,7 @@ m™uÁ˘uªr
 acc_deÁu…
 .manufacturer;
 
-166 i‡(!
+158 i‡(!
 acc
 .
 modñ
@@ -4727,7 +5553,7 @@ modñ
 no_≠p
 )
 
-167 
+159 
 acc
 .
 modñ
@@ -4735,13 +5561,13 @@ modñ
 acc_deÁu…
 .model;
 
-168 i‡(!
+160 i‡(!
 acc
 .
 vîsi⁄
 )
 
-169 
+161 
 acc
 .
 vîsi⁄
@@ -4749,13 +5575,13 @@ vîsi⁄
 acc_deÁu…
 .version;
 
-170 i‡(!
+162 i‡(!
 acc
 .
 £rül
 )
 
-171 
+163 
 acc
 .
 £rül
@@ -4763,13 +5589,13 @@ acc
 acc_deÁu…
 .serial;
 
-172 i‡(!
+164 i‡(!
 acc
 .
 uæ
 )
 
-173 
+165 
 acc
 .
 uæ
@@ -4777,37 +5603,37 @@ uæ
 acc_deÁu…
 .url;
 
-175 i‡(
+167 i‡(
 	`öô_ac˚ss‹y
 (&
 acc
 ) != 0)
 
-176 
+168 
 íd
 ;
 
-178 
+170 
 	`ac˚ss‹y_maö
 (&
 acc
 );
 
-180 
+172 
 íd
 :
 
-181 
+173 
 	`föi_ac˚ss‹y
 (&
 acc
 );
 
-183 
+175 
 	}
 }
 
-185 
+177 
 	$öô_ac˚ss‹y
 (
 ac˚ss‹y_t
@@ -4815,11 +5641,11 @@ ac˚ss‹y_t
 acc
 )
 
-187 
+179 
 ªt
 ;
 
-188 
+180 
 uöt16_t
  
 pid
@@ -4827,21 +5653,21 @@ pid
 vid
 ;
 
-189 *
+181 *
 tmp
 ;
 
-190 
+182 
 uöt8_t
  
 buf„r
 [2];
 
-191 
+183 
 åõs
  = 1;
 
-194 
+186 
 ªt
  = 
 	`libusb_öô
@@ -4849,33 +5675,33 @@ buf„r
 NULL
 );
 
-195 i‡(
+187 i‡(
 ªt
  != 0) {
 
-196 
+188 
 	`¥ötf
 ("libusb inô faûed: %d\n", 
 ªt
 );
 
-197  
+189  
 ªt
 ;
 
-200 
+192 
 	`∑r£_devs
 (
 vid
 );
 
-204 i‡(
+196 i‡(
 	`is_ac˚ss‹y_¥e£¡
 (
 acc
 ))
 
-208 
+200 
 vid
  = (
 uöt16_t
@@ -4889,7 +5715,7 @@ devi˚
 tmp
 , 16);
 
-209 
+201 
 pid
  = (
 uöt16_t
@@ -4899,7 +5725,7 @@ uöt16_t
 tmp
  + 1, &tmp, 16);
 
-210 
+202 
 	`¥ötf
 ("Lookög f‹ devi˚ %4.4x:%4.4x\n", 
 vid
@@ -4907,7 +5733,7 @@ vid
 pid
 );
 
-213 
+205 
 acc
 ->
 h™dÀ
@@ -4921,7 +5747,7 @@ vid
 pid
 );
 
-214 i‡(
+206 i‡(
 acc
 ->
 h™dÀ
@@ -4929,11 +5755,11 @@ h™dÀ
 NULL
 ) {
 
-215 
+207 
 	`¥ötf
 ("UnableÅo open device...\n");
 
-218 
+210 
 	`¥ötf
 ("O≥¿devi˚(%4.4x %4.4xËok\n",
 vid
@@ -4941,7 +5767,7 @@ vid
 pid
 );
 
-221 
+213 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -4951,37 +5777,37 @@ acc
 h™dÀ
 ,
 
-222 
+214 
 LIBUSB_ENDPOINT_IN
  |
 
-223 
+215 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-224 
+216 
 AOA_GET_PROTOCOL
 , 0, 0, 
 buf„r
 ,
 
-225 (
+217 (
 buf„r
 ), 0);
 
-226 i‡(
+218 i‡(
 ªt
  < 0) {
 
-227 
+219 
 	`¥ötf
 ("Error gettingÖrotocol...\n");
 
-228  
+220  
 ªt
 ;
 
-230 
+222 
 acc
 ->
 aﬂ_vîsi⁄
@@ -4989,7 +5815,7 @@ aﬂ_vîsi⁄
 buf„r
 [1] << 8) | buffer[0]);
 
-231 
+223 
 	`¥ötf
 ("Devi˚ suµ‹t†AOA %d.0!\n", 
 acc
@@ -4997,11 +5823,11 @@ acc
 aﬂ_vîsi⁄
 );
 
-235 
+227 
 	`u¶ìp
 (10000);
 
-238 i‡((
+230 i‡((
 acc
 ->
 aﬂ_vîsi⁄
@@ -5009,21 +5835,21 @@ aﬂ_vîsi⁄
 m™uÁ˘uªr
 ) {
 
-239 
+231 
 	`¥ötf
 ("Connecting withoután Android App only for AOA 2.0\n");
 
-243 
+235 
 	`¥ötf
 ("Sending identificationÅoÅhe device\n");
 
-244 i‡(
+236 i‡(
 acc
 ->
 m™uÁ˘uªr
 ) {
 
-245 
+237 
 	`¥ötf
 (" sídög m™uÁ˘uªr: %s\n", 
 acc
@@ -5031,7 +5857,7 @@ acc
 m™uÁ˘uªr
 );
 
-246 
+238 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -5041,31 +5867,31 @@ acc
 h™dÀ
 ,
 
-247 
+239 
 LIBUSB_ENDPOINT_OUT
 
 
-248 | 
+240 | 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-249 
+241 
 AOA_SEND_IDENT
 , 0,
 
-250 
+242 
 AOA_STRING_MAN_ID
 ,
 
-251 (
-uöt8_t
- *Ë
+243 
+	`utf8
+(
 acc
 ->
 m™uÁ˘uªr
-,
+),
 
-252 
+244 
 	`°æí
 (
 acc
@@ -5073,25 +5899,25 @@ acc
 m™uÁ˘uªr
 ) + 1, 0);
 
-253 i‡(
+245 i‡(
 ªt
  < 0)
 
-254 
+246 
 îr‹
 ;
 
-257 
+249 
 	`u¶ìp
 (10000);
 
-258 i‡(
+250 i‡(
 acc
 ->
 modñ
 ) {
 
-259 
+251 
 	`¥ötf
 (" sídög modñ: %s\n", 
 acc
@@ -5099,7 +5925,7 @@ acc
 modñ
 );
 
-260 
+252 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -5109,23 +5935,23 @@ acc
 h™dÀ
 ,
 
-261 
+253 
 LIBUSB_ENDPOINT_OUT
 
 
-262 | 
+254 | 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-263 
+255 
 AOA_SEND_IDENT
 , 0,
 
-264 
+256 
 AOA_STRING_MOD_ID
 ,
 
-265 (
+257 (
 uöt8_t
  *Ë
 acc
@@ -5133,7 +5959,7 @@ acc
 modñ
 ,
 
-266 
+258 
 	`°æí
 (
 acc
@@ -5141,19 +5967,19 @@ acc
 modñ
 ) + 1, 0);
 
-267 i‡(
+259 i‡(
 ªt
  < 0)
 
-268 
+260 
 îr‹
 ;
 
-273 
+265 
 	`u¶ìp
 (10000);
 
-274 
+266 
 	`¥ötf
 (" sídög des¸ùti⁄: %s\n", 
 acc
@@ -5161,7 +5987,7 @@ acc
 des¸ùti⁄
 );
 
-275 
+267 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -5171,21 +5997,21 @@ acc
 h™dÀ
 ,
 
-276 
+268 
 LIBUSB_ENDPOINT_OUT
  |
 
-277 
+269 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-278 
+270 
 AOA_SEND_IDENT
 , 0, 
 AOA_STRING_DSC_ID
 ,
 
-279 (
+271 (
 uöt8_t
  *Ë
 acc
@@ -5193,7 +6019,7 @@ acc
 des¸ùti⁄
 ,
 
-280 
+272 
 	`°æí
 (
 acc
@@ -5201,19 +6027,19 @@ acc
 des¸ùti⁄
 ) + 1, 0);
 
-281 i‡(
+273 i‡(
 ªt
  < 0)
 
-282 
+274 
 îr‹
 ;
 
-284 
+276 
 	`u¶ìp
 (10000);
 
-285 
+277 
 	`¥ötf
 (" sídög vîsi⁄: %s\n", 
 acc
@@ -5221,7 +6047,7 @@ acc
 vîsi⁄
 );
 
-286 
+278 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -5231,21 +6057,21 @@ acc
 h™dÀ
 ,
 
-287 
+279 
 LIBUSB_ENDPOINT_OUT
  |
 
-288 
+280 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-289 
+281 
 AOA_SEND_IDENT
 , 0, 
 AOA_STRING_VER_ID
 ,
 
-290 (
+282 (
 uöt8_t
  *Ë
 acc
@@ -5253,7 +6079,7 @@ acc
 vîsi⁄
 ,
 
-291 
+283 
 	`°æí
 (
 acc
@@ -5261,19 +6087,19 @@ acc
 vîsi⁄
 ) + 1, 0);
 
-292 i‡(
+284 i‡(
 ªt
  < 0)
 
-293 
+285 
 îr‹
 ;
 
-295 
+287 
 	`u¶ìp
 (10000);
 
-296 
+288 
 	`¥ötf
 (" sídög uæ: %s\n", 
 acc
@@ -5281,7 +6107,7 @@ acc
 uæ
 );
 
-297 
+289 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -5291,21 +6117,21 @@ acc
 h™dÀ
 ,
 
-298 
+290 
 LIBUSB_ENDPOINT_OUT
  |
 
-299 
+291 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-300 
+292 
 AOA_SEND_IDENT
 , 0, 
 AOA_STRING_URL_ID
 ,
 
-301 (
+293 (
 uöt8_t
  *Ë
 acc
@@ -5313,7 +6139,7 @@ acc
 uæ
 ,
 
-302 
+294 
 	`°æí
 (
 acc
@@ -5321,19 +6147,19 @@ acc
 uæ
 ) + 1, 0);
 
-303 i‡(
+295 i‡(
 ªt
  < 0)
 
-304 
+296 
 îr‹
 ;
 
-306 
+298 
 	`u¶ìp
 (10000);
 
-307 
+299 
 	`¥ötf
 (" sídög sîü»numbî: %s\n", 
 acc
@@ -5341,7 +6167,7 @@ acc
 £rül
 );
 
-308 
+300 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -5351,21 +6177,21 @@ acc
 h™dÀ
 ,
 
-309 
+301 
 LIBUSB_ENDPOINT_OUT
  |
 
-310 
+302 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-311 
+303 
 AOA_SEND_IDENT
 , 0, 
 AOA_STRING_SER_ID
 ,
 
-312 (
+304 (
 uöt8_t
  *Ë
 acc
@@ -5373,7 +6199,7 @@ acc
 £rül
 ,
 
-313 
+305 
 	`°æí
 (
 acc
@@ -5381,25 +6207,25 @@ acc
 £rül
 ) + 1, 0);
 
-314 i‡(
+306 i‡(
 ªt
  < 0)
 
-315 
+307 
 îr‹
 ;
 
-318 i‡(
+310 i‡(
 acc
 ->
 aﬂ_vîsi⁄
  >= 2) {
 
-319 
+311 
 	`¥ötf
 ("ásking foráudio support\n");
 
-320 
+312 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -5409,35 +6235,35 @@ acc
 h™dÀ
 ,
 
-321 
+313 
 LIBUSB_ENDPOINT_OUT
 
 
-322 | 
+314 | 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-323 
+315 
 AOA_AUDIO_SUPPORT
 , 1, 0, 0, 0, 0);
 
-324 i‡(
+316 i‡(
 ªt
  < 0)
 
-325 
+317 
 îr‹
 ;
 
-329 
+321 
 	`u¶ìp
 (20000);
 
-330 
+322 
 	`¥ötf
 ("TurningÅhe device in Accessory mode ...");
 
-331 
+323 
 ªt
  = 
 	`libusb_c⁄åﬁ_å™s„r
@@ -5447,55 +6273,55 @@ acc
 h™dÀ
 ,
 
-332 
+324 
 LIBUSB_ENDPOINT_OUT
  |
 
-333 
+325 
 LIBUSB_REQUEST_TYPE_VENDOR
 ,
 
-334 
+326 
 AOA_START_ACCESSORY
 , 0, 0, 
 NULL
 , 0, 0);
 
-335 i‡(
+327 i‡(
 ªt
  < 0) {
 
-336 
+328 
 	`¥ötf
 ("failed\n");
 
-337 
+329 
 îr‹
 ;
 
-341 
+333 
 	`u¶ìp
 (20000);
 
-343 
+335 
 åõs
  = 2;
 
-345 
+337 
 åõs
 --) {
 
-346 i‡(
+338 i‡(
 	`is_ac˚ss‹y_¥e£¡
 (
 acc
 ))
 
-350 
+342 
 	`¶ìp
 (1);
 
-354 
+346 
 	`›í_•ecül_vid_dev
 (
 vid
@@ -5505,7 +6331,7 @@ ac˚ss‹y_t
 acc
 );
 
-355 
+347 
 ªt
  = 
 	`›í_•ecül_vid_dev
@@ -5515,29 +6341,29 @@ AOA_ACCESSORY_VID
 acc
 );
 
-356 if(
+348 if(
 ªt
  != 0 ) {
 
-357 
+349 
 	`¥ötf
 ("open_special_vid_dev failed\n");
 
-363 
+355 
 îr‹
 :
 
-364 
+356 
 	`¥ötf
 ("Ac˚ss‹y inô faûed: %d\n", 
 ªt
 );
 
-366 
+358 
 	}
 }
 
-369 
+361 
 	$is_ac˚ss‹y_¥e£¡
 (
 ac˚ss‹y_t
@@ -5545,17 +6371,17 @@ ac˚ss‹y_t
 acc
 )
 
-371 
+363 
 	`¥ötf
 ("is_accessory_present ..\n");
 
-372 
+364 
 libusb_devi˚_h™dÀ
  *
 h™dÀ
 ;
 
-373 
+365 
 uöt16_t
  
 vid
@@ -5563,23 +6389,23 @@ vid
 AOA_ACCESSORY_VID
 ;
 
-374 
+366 
 uöt16_t
  
 pid
  = 0;
 
-376 
+368 
 	`¥ötf
 ("open AOA_ACCESSORY_PID ...");
 
-378 
+370 
 pid
  = 
 AOA_ACCESSORY_PID
 ;
 
-379 
+371 
 h™dÀ
  = 
 	`libusb_›í_devi˚_wôh_vid_pid
@@ -5591,23 +6417,23 @@ vid
 pid
 );
 
-380 i‡(
+372 i‡(
 h™dÀ
  !
 NULL
 )
 
-381 
+373 
 ˛aim
 ;
 
-384 
+376 
 pid
  = 
 AOA_ACCESSORY_ADB_PID
 ;
 
-385 
+377 
 h™dÀ
  = 
 	`libusb_›í_devi˚_wôh_vid_pid
@@ -5619,23 +6445,23 @@ vid
 pid
 );
 
-386 i‡(
+378 i‡(
 h™dÀ
  !
 NULL
 )
 
-387 
+379 
 ˛aim
 ;
 
-389 
+381 
 pid
  = 
 AOA_AUDIO_PID
 ;
 
-390 
+382 
 h™dÀ
  = 
 	`libusb_›í_devi˚_wôh_vid_pid
@@ -5647,23 +6473,23 @@ vid
 pid
 );
 
-391 i‡(
+383 i‡(
 h™dÀ
  !
 NULL
 )
 
-392 
+384 
 ˛aim
 ;
 
-394 
+386 
 pid
  = 
 AOA_AUDIO_ADB_PID
 ;
 
-395 
+387 
 h™dÀ
  = 
 	`libusb_›í_devi˚_wôh_vid_pid
@@ -5675,23 +6501,23 @@ vid
 pid
 );
 
-396 i‡(
+388 i‡(
 h™dÀ
  !
 NULL
 )
 
-397 
+389 
 ˛aim
 ;
 
-399 
+391 
 pid
  = 
 AOA_ACCESSORY_AUDIO_PID
 ;
 
-400 
+392 
 h™dÀ
  = 
 	`libusb_›í_devi˚_wôh_vid_pid
@@ -5703,23 +6529,23 @@ vid
 pid
 );
 
-401 i‡(
+393 i‡(
 h™dÀ
  !
 NULL
 )
 
-402 
+394 
 ˛aim
 ;
 
-404 
+396 
 pid
  = 
 AOA_ACCESSORY_AUDIO_ADB_PID
 ;
 
-405 
+397 
 h™dÀ
  = 
 	`libusb_›í_devi˚_wôh_vid_pid
@@ -5731,25 +6557,25 @@ vid
 pid
 );
 
-406 i‡(
+398 i‡(
 h™dÀ
  !
 NULL
 )
 
-407 
+399 
 ˛aim
 ;
 
-409 
+401 
 	`¥ötf
 ("notÖresent\n");
 
-412 
+404 
 ˛aim
 :
 
-413 
+405 
 	`¥ötf
 ("Foundác˚ss‹y %4.4x:%4.4x\n", 
 vid
@@ -5757,29 +6583,29 @@ vid
 pid
 );
 
-414 
+406 
 acc
 ->
 h™dÀ
  = handle;
 
-415 
+407 
 acc
 ->
 vid
  = vid;
 
-416 
+408 
 acc
 ->
 pid
  =Öid;
 
-418 
+410 
 	}
 }
 
-420 
+412 
 	$föi_ac˚ss‹y
 (
 ac˚ss‹y_t
@@ -5787,11 +6613,11 @@ ac˚ss‹y_t
 acc
 )
 
-422 
+414 
 	`¥ötf
 ("Closing USB device\n");
 
-424 i‡(
+416 i‡(
 acc
 ->
 h™dÀ
@@ -5799,7 +6625,7 @@ h™dÀ
 NULL
 ) {
 
-425 
+417 
 	`libusb_ªÀa£_öãrÁ˚
 (
 acc
@@ -5807,7 +6633,7 @@ acc
 h™dÀ
 , 0);
 
-426 
+418 
 	`libusb_˛o£
 (
 acc
@@ -5815,13 +6641,13 @@ acc
 h™dÀ
 );
 
-429 
+421 
 	`libusb_exô
 (
 NULL
 );
 
-432 
+424 
 	}
 }
 

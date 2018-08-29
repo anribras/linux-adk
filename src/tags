@@ -28,21 +28,29 @@ AOA_STRING_SER_ID	/opt/resource/linux-adk/src/linux-adk.h	42;"	d
 AOA_STRING_URL_ID	/opt/resource/linux-adk/src/linux-adk.h	41;"	d
 AOA_STRING_VER_ID	/opt/resource/linux-adk/src/linux-adk.h	40;"	d
 AOA_UNREGISTER_HID	/opt/resource/linux-adk/src/linux-adk.h	31;"	d
-AxisSetting	/opt/resource/linux-adk/src/axis.h	/^} AxisSetting ;$/;"	t	typeref:struct:__anon7
-CarAction	/opt/resource/linux-adk/src/axis.h	/^} CarAction;$/;"	v	typeref:enum:__anon3
-CarScreenSetting	/opt/resource/linux-adk/src/axis.h	/^} CarScreenSetting;$/;"	t	typeref:struct:__anon5
+AxisSetting	/opt/resource/linux-adk/src/axis.h	/^} AxisSetting ;$/;"	t	typeref:struct:__anon8
+CarAction	/opt/resource/linux-adk/src/axis.h	/^} CarAction;$/;"	v	typeref:enum:__anon4
+CarScreenSetting	/opt/resource/linux-adk/src/axis.h	/^} CarScreenSetting;$/;"	t	typeref:struct:__anon6
+LOGICAL_MAXIMUM_1	/opt/resource/linux-adk/src/hid.c	113;"	d	file:
+LOGICAL_MAXIMUM_2	/opt/resource/linux-adk/src/hid.c	115;"	d	file:
+LOGICAL_MINIMUM_1	/opt/resource/linux-adk/src/hid.c	112;"	d	file:
+LOGICAL_MINIMUM_2	/opt/resource/linux-adk/src/hid.c	114;"	d	file:
 PACKAGE_BUGREPORT	/opt/resource/linux-adk/src/linux-adk.h	60;"	d
 PACKAGE_VERSION	/opt/resource/linux-adk/src/linux-adk.h	59;"	d
+PHONE_HEIGHT	/opt/resource/linux-adk/src/hid.c	39;"	d	file:
+PHONE_WIDTH	/opt/resource/linux-adk/src/hid.c	38;"	d	file:
+PHYSICAL_MAXIMUM_1	/opt/resource/linux-adk/src/hid.c	119;"	d	file:
+PHYSICAL_MAXIMUM_2	/opt/resource/linux-adk/src/hid.c	121;"	d	file:
+PHYSICAL_MINIMUM_1	/opt/resource/linux-adk/src/hid.c	118;"	d	file:
+PHYSICAL_MINIMUM_2	/opt/resource/linux-adk/src/hid.c	120;"	d	file:
 PI	/opt/resource/linux-adk/src/axis.h	13;"	d
-PhoneScreenSetting	/opt/resource/linux-adk/src/axis.h	/^} PhoneScreenSetting;$/;"	t	typeref:struct:__anon6
-Point	/opt/resource/linux-adk/src/axis.h	/^} Point;$/;"	t	typeref:struct:__anon4
+PhoneScreenSetting	/opt/resource/linux-adk/src/axis.h	/^} PhoneScreenSetting;$/;"	t	typeref:struct:__anon7
+Point	/opt/resource/linux-adk/src/axis.h	/^} Point;$/;"	t	typeref:struct:__anon5
 REPORT_ID	/opt/resource/linux-adk/src/hid.c	35;"	d	file:
 Report	/opt/resource/linux-adk/src/hid.c	/^struct Report {$/;"	s	file:
-TOUCHSCREEN_ENABLE	/opt/resource/linux-adk/src/hid.c	36;"	d	file:
-TOUCH_DOWN	/opt/resource/linux-adk/src/axis.h	/^	TOUCH_DOWN = 5,$/;"	e	enum:__anon3
-TOUCH_MOVE	/opt/resource/linux-adk/src/axis.h	/^    TOUCH_MOVE = 4,$/;"	e	enum:__anon3
-TOUCH_UP	/opt/resource/linux-adk/src/axis.h	/^    TOUCH_UP   = 6,$/;"	e	enum:__anon3
-Vendor_Meizu	/opt/resource/linux-adk/src/linux-adk.c	36;"	d	file:
+TOUCH_DOWN	/opt/resource/linux-adk/src/axis.h	/^	TOUCH_DOWN = 5,$/;"	e	enum:__anon4
+TOUCH_MOVE	/opt/resource/linux-adk/src/axis.h	/^    TOUCH_MOVE = 4,$/;"	e	enum:__anon4
+TOUCH_UP	/opt/resource/linux-adk/src/axis.h	/^    TOUCH_UP   = 6,$/;"	e	enum:__anon4
 _AXIS_H	/opt/resource/linux-adk/src/axis.h	9;"	d
 _HID_H_	/opt/resource/linux-adk/src/hid.h	22;"	d
 _LINUX_ADK_H_	/opt/resource/linux-adk/src/linux-adk.h	22;"	d
@@ -54,26 +62,28 @@ aoa_version	/opt/resource/linux-adk/src/linux-adk.h	/^	uint32_t aoa_version;$/;"
 axis_convert	/opt/resource/linux-adk/src/axis.c	/^Point axis_convert(Point p)$/;"	f
 axis_init	/opt/resource/linux-adk/src/axis.c	/^int axis_init(AxisSetting* as , int angle)$/;"	f
 bInRange	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   bInRange   : 1;$/;"	m	struct:Report::__anon1	file:
+bInRange	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   bInRange   : 1;$/;"	m	struct:Report::__anon2	file:
 bTipSwitch	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   bTipSwitch : 1;$/;"	m	struct:Report::__anon1	file:
-base_x	/opt/resource/linux-adk/src/axis.h	/^	int base_x;$/;"	m	struct:__anon5
-base_y	/opt/resource/linux-adk/src/axis.h	/^	int base_y;$/;"	m	struct:__anon5
+bTipSwitch	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   bTipSwitch : 1;$/;"	m	struct:Report::__anon2	file:
+base_x	/opt/resource/linux-adk/src/axis.h	/^	int base_x;$/;"	m	struct:__anon6
+base_y	/opt/resource/linux-adk/src/axis.h	/^	int base_y;$/;"	m	struct:__anon6
 callback_hid	/opt/resource/linux-adk/src/hid.c	/^static void callback_hid(struct libusb_transfer *transfer)$/;"	f	file:
 cos_val	/opt/resource/linux-adk/src/axis.c	/^static float cos_val =  -1;$/;"	v	file:
-css	/opt/resource/linux-adk/src/axis.h	/^	CarScreenSetting css;$/;"	m	struct:__anon7
+css	/opt/resource/linux-adk/src/axis.h	/^	CarScreenSetting css;$/;"	m	struct:__anon8
 description	/opt/resource/linux-adk/src/linux-adk.h	/^	char *description;$/;"	m	struct:_accessory_t
-descriptor	/opt/resource/linux-adk/src/hid.h	/^	unsigned char descriptor[256];$/;"	m	struct:__anon2
-descriptor_size	/opt/resource/linux-adk/src/hid.h	/^	int descriptor_size;$/;"	m	struct:__anon2
+descriptor	/opt/resource/linux-adk/src/hid.h	/^	unsigned char descriptor[256];$/;"	m	struct:__anon3
+descriptor_size	/opt/resource/linux-adk/src/hid.h	/^	int descriptor_size;$/;"	m	struct:__anon3
 device	/opt/resource/linux-adk/src/linux-adk.h	/^	char *device;$/;"	m	struct:_accessory_t
-endpoint_in	/opt/resource/linux-adk/src/hid.h	/^	int endpoint_in;$/;"	m	struct:__anon2
+endpoint_in	/opt/resource/linux-adk/src/hid.h	/^	int endpoint_in;$/;"	m	struct:__anon3
 fini_accessory	/opt/resource/linux-adk/src/linux-adk.c	/^static void fini_accessory(accessory_t * acc)$/;"	f	file:
-full_height	/opt/resource/linux-adk/src/axis.h	/^	int full_height;$/;"	m	struct:__anon5
-full_height	/opt/resource/linux-adk/src/axis.h	/^ 	int full_height;$/;"	m	struct:__anon6
-full_width	/opt/resource/linux-adk/src/axis.h	/^	int full_width;$/;"	m	struct:__anon5
+full_height	/opt/resource/linux-adk/src/axis.h	/^	int full_height;$/;"	m	struct:__anon6
+full_height	/opt/resource/linux-adk/src/axis.h	/^ 	int full_height;$/;"	m	struct:__anon7
 full_width	/opt/resource/linux-adk/src/axis.h	/^	int full_width;$/;"	m	struct:__anon6
-handle	/opt/resource/linux-adk/src/hid.h	/^	struct libusb_device_handle *handle;$/;"	m	struct:__anon2	typeref:struct:__anon2::libusb_device_handle
+full_width	/opt/resource/linux-adk/src/axis.h	/^	int full_width;$/;"	m	struct:__anon7
+handle	/opt/resource/linux-adk/src/hid.h	/^	struct libusb_device_handle *handle;$/;"	m	struct:__anon3	typeref:struct:__anon3::libusb_device_handle
 handle	/opt/resource/linux-adk/src/linux-adk.h	/^	struct libusb_device_handle *handle;$/;"	m	struct:_accessory_t	typeref:struct:_accessory_t::libusb_device_handle
-hid_device	/opt/resource/linux-adk/src/hid.h	/^} hid_device;$/;"	t	typeref:struct:__anon2
-hid_report_desc	/opt/resource/linux-adk/src/hid.c	/^static const unsigned char hid_report_desc[] = {$/;"	v	file:
+hid_device	/opt/resource/linux-adk/src/hid.h	/^} hid_device;$/;"	t	typeref:struct:__anon3
+hid_report_desc	/opt/resource/linux-adk/src/hid.c	/^static unsigned char hid_report_desc[] = {$/;"	v	file:
 init_accessory	/opt/resource/linux-adk/src/linux-adk.c	/^static int init_accessory(accessory_t * acc)$/;"	f	file:
 is_accessory_present	/opt/resource/linux-adk/src/linux-adk.c	/^static int is_accessory_present(accessory_t * acc)$/;"	f	file:
 main	/opt/resource/linux-adk/src/linux-adk.c	/^int main(int argc, char *argv[])$/;"	f
@@ -81,38 +91,43 @@ manufacturer	/opt/resource/linux-adk/src/linux-adk.h	/^	char *manufacturer;$/;"	
 model	/opt/resource/linux-adk/src/linux-adk.h	/^	char *model;$/;"	m	struct:_accessory_t
 open_device	/opt/resource/linux-adk/src/hid.c	/^static int open_device(struct libusb_device_handle **handle,$/;"	f	file:
 open_special_vid_dev	/opt/resource/linux-adk/src/device.c	/^int open_special_vid_dev(int vid, accessory_t * acc)$/;"	f
-packet_size	/opt/resource/linux-adk/src/hid.h	/^	ssize_t packet_size;$/;"	m	struct:__anon2
+packet_size	/opt/resource/linux-adk/src/hid.h	/^	ssize_t packet_size;$/;"	m	struct:__anon3
 parse_altsetting	/opt/resource/linux-adk/src/device.c	/^static int parse_altsetting(const struct libusb_interface_descriptor *interface)$/;"	f	file:
 parse_configuration	/opt/resource/linux-adk/src/device.c	/^int parse_configuration(struct libusb_config_descriptor *config)$/;"	f
 parse_devs	/opt/resource/linux-adk/src/device.c	/^int parse_devs(int vid)$/;"	f
 parse_endpoint	/opt/resource/linux-adk/src/device.c	/^static int parse_endpoint(const struct libusb_endpoint_descriptor * endpoint)$/;"	f	file:
 parse_interface	/opt/resource/linux-adk/src/device.c	/^static int parse_interface(const struct libusb_interface *interface)$/;"	f	file:
 pid	/opt/resource/linux-adk/src/linux-adk.h	/^	uint16_t pid;$/;"	m	struct:_accessory_t
-pss	/opt/resource/linux-adk/src/axis.h	/^	PhoneScreenSetting pss;$/;"	m	struct:__anon7
+pss	/opt/resource/linux-adk/src/axis.h	/^	PhoneScreenSetting pss;$/;"	m	struct:__anon8
 receive_loop	/opt/resource/linux-adk/src/hid.c	/^static void *receive_loop(void *arg)$/;"	f	file:
 register_hid_callback	/opt/resource/linux-adk/src/hid.c	/^int register_hid_callback(accessory_t * acc, hid_device * hid)$/;"	f
 report_id	/opt/resource/linux-adk/src/hid.c	/^	unsigned char  report_id ;  \/\/ Must be set to 4$/;"	m	struct:Report	file:
 reserved	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   reserved   : 6;$/;"	m	struct:Report::__anon1	file:
+reserved	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   reserved   : 6;$/;"	m	struct:Report::__anon2	file:
 rot	/opt/resource/linux-adk/src/axis.c	/^static int rot;$/;"	v	file:
-rx_thread	/opt/resource/linux-adk/src/hid.h	/^	pthread_t rx_thread;$/;"	m	struct:__anon2
+rx_thread	/opt/resource/linux-adk/src/hid.h	/^	pthread_t rx_thread;$/;"	m	struct:__anon3
 search_hid	/opt/resource/linux-adk/src/hid.c	/^unsigned char search_hid(hid_device * hid)$/;"	f
 send_hid_descriptor	/opt/resource/linux-adk/src/hid.c	/^int send_hid_descriptor(accessory_t * acc, hid_device * hid)$/;"	f
 serial	/opt/resource/linux-adk/src/linux-adk.h	/^	char *serial;$/;"	m	struct:_accessory_t
+set_hid_logical_range	/opt/resource/linux-adk/src/hid.c	/^void set_hid_logical_range(unsigned short width, unsigned short height) $/;"	f
+set_hid_physical_range	/opt/resource/linux-adk/src/hid.c	/^void set_hid_physical_range(unsigned short width, unsigned short height) $/;"	f
 setup	/opt/resource/linux-adk/src/axis.c	/^static AxisSetting* setup;$/;"	v	file:
-show_help	/opt/resource/linux-adk/src/linux-adk.c	/^static void show_help(char *name)$/;"	f	file:
-show_version	/opt/resource/linux-adk/src/linux-adk.c	/^static void show_version(char *name)$/;"	f	file:
 signal_handler	/opt/resource/linux-adk/src/linux-adk.c	/^static void signal_handler(int signo)$/;"	f	file:
 sin_val	/opt/resource/linux-adk/src/axis.c	/^static float sin_val =  -1;$/;"	v	file:
 status	/opt/resource/linux-adk/src/hid.c	/^	} status;$/;"	m	struct:Report	typeref:struct:Report::__anon1	file:
+status	/opt/resource/linux-adk/src/hid.c	/^	} status;$/;"	m	struct:Report	typeref:struct:Report::__anon2	file:
 stop_acc	/opt/resource/linux-adk/src/linux-adk.c	/^volatile int stop_acc = 0;$/;"	v
 transfer	/opt/resource/linux-adk/src/linux-adk.h	/^	struct libusb_transfer *transfer;$/;"	m	struct:_accessory_t	typeref:struct:_accessory_t::libusb_transfer
 url	/opt/resource/linux-adk/src/linux-adk.h	/^	char *url;$/;"	m	struct:_accessory_t
+utf8	/opt/resource/linux-adk/src/linux-adk.c	/^char* utf8(const char *str)$/;"	f
 valid_mouse_report_descriptor	/opt/resource/linux-adk/src/accessory.c	/^static unsigned char valid_mouse_report_descriptor [] = $/;"	v	file:
 version	/opt/resource/linux-adk/src/linux-adk.h	/^	char *version;$/;"	m	struct:_accessory_t
 vid	/opt/resource/linux-adk/src/linux-adk.h	/^	uint16_t vid;$/;"	m	struct:_accessory_t
-view_height	/opt/resource/linux-adk/src/axis.h	/^	int view_height;$/;"	m	struct:__anon5
-view_width	/opt/resource/linux-adk/src/axis.h	/^	int view_width;$/;"	m	struct:__anon5
+view_height	/opt/resource/linux-adk/src/axis.h	/^	int view_height;$/;"	m	struct:__anon6
+view_width	/opt/resource/linux-adk/src/axis.h	/^	int view_width;$/;"	m	struct:__anon6
+wXData	/opt/resource/linux-adk/src/hid.c	/^	short  wXData;$/;"	m	struct:Report	file:
 wXData	/opt/resource/linux-adk/src/hid.c	/^	unsigned short  wXData;$/;"	m	struct:Report	file:
+wYData	/opt/resource/linux-adk/src/hid.c	/^	short  wYData;$/;"	m	struct:Report	file:
 wYData	/opt/resource/linux-adk/src/hid.c	/^	unsigned short  wYData;$/;"	m	struct:Report	file:
-x	/opt/resource/linux-adk/src/axis.h	/^	int x;$/;"	m	struct:__anon4
-y	/opt/resource/linux-adk/src/axis.h	/^	int y;$/;"	m	struct:__anon4
+x	/opt/resource/linux-adk/src/axis.h	/^	int x;$/;"	m	struct:__anon5
+y	/opt/resource/linux-adk/src/axis.h	/^	int y;$/;"	m	struct:__anon5
