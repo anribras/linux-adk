@@ -24,7 +24,7 @@
 #include <unistd.h>
 #include <signal.h>
 
-#include <libusb.h>
+#include <libusb-1.0/libusb.h>
 
 #include "linux-adk.h"
 

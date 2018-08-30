@@ -26,7 +26,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <poll.h>
-#include <libusb.h>
+#include <libusb-1.0/libusb.h>
 
 #include "linux-adk.h"
 #include "hid.h"
@@ -411,7 +411,7 @@ static int open_device(struct libusb_device_handle **handle,
 		}
 		kernel_claimed = 1;
 	}
-
+#if 0
 	printf("libusb_claim_interface\n");
 	ret = libusb_claim_interface(*handle, interface);
 	if (ret) {
@@ -424,6 +424,7 @@ static int open_device(struct libusb_device_handle **handle,
 		*handle = NULL;
 		return -1;
 	}
+#endif
 
 	return 0;
 }

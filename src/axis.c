@@ -7,7 +7,6 @@
  */
 #include <stdio.h>
 #include <math.h>
-#include <linux/input.h>
 #include "axis.h"
 
 static AxisSetting* setup;

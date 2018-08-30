@@ -21,7 +21,8 @@ CC			= $(CROSS_COMPILE)gcc
 INSTALL		= install
 MKDIR		= mkdir -p
 
-LIBS		=  -lusb-1.0 -lpthread -lm -lhidapi-hidraw -L/home/bravo/Projects/Linux/linux-adk
+LIBS		=  -lusb-1.0 -lpthread -lm
+LIBS  		+= -framework IOKit -framework CoreFoundation
 CFLAGS		+= -g -O0
 LDFLAGS 	+= 
 CPPFLAGS	+=
@@ -37,7 +38,8 @@ OBJ 		= $(objdir)/accessory.o \
 			  $(objdir)/hid.o \
 			  $(objdir)/linux-adk.o\
 			  $(objdir)/device.o \
-			  $(objdir)/axis.o
+			  $(objdir)/axis.o \
+			  $(objdir)/hidapi.o
 
 TARGET		= linux-adk
 
