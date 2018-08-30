@@ -4,130 +4,154 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-AOA_ACCESSORY_ADB_PID	/opt/resource/linux-adk/src/linux-adk.h	47;"	d
-AOA_ACCESSORY_AUDIO_ADB_PID	/opt/resource/linux-adk/src/linux-adk.h	51;"	d
-AOA_ACCESSORY_AUDIO_PID	/opt/resource/linux-adk/src/linux-adk.h	50;"	d
-AOA_ACCESSORY_EP_IN	/opt/resource/linux-adk/src/linux-adk.h	54;"	d
-AOA_ACCESSORY_EP_OUT	/opt/resource/linux-adk/src/linux-adk.h	55;"	d
-AOA_ACCESSORY_INTERFACE	/opt/resource/linux-adk/src/linux-adk.h	56;"	d
-AOA_ACCESSORY_PID	/opt/resource/linux-adk/src/linux-adk.h	46;"	d
-AOA_ACCESSORY_VID	/opt/resource/linux-adk/src/linux-adk.h	45;"	d
-AOA_AUDIO_ADB_PID	/opt/resource/linux-adk/src/linux-adk.h	49;"	d
-AOA_AUDIO_PID	/opt/resource/linux-adk/src/linux-adk.h	48;"	d
-AOA_AUDIO_SUPPORT	/opt/resource/linux-adk/src/linux-adk.h	34;"	d
-AOA_GET_PROTOCOL	/opt/resource/linux-adk/src/linux-adk.h	27;"	d
-AOA_REGISTER_HID	/opt/resource/linux-adk/src/linux-adk.h	30;"	d
-AOA_SEND_HID_EVENT	/opt/resource/linux-adk/src/linux-adk.h	33;"	d
-AOA_SEND_IDENT	/opt/resource/linux-adk/src/linux-adk.h	28;"	d
-AOA_SET_HID_REPORT_DESC	/opt/resource/linux-adk/src/linux-adk.h	32;"	d
-AOA_START_ACCESSORY	/opt/resource/linux-adk/src/linux-adk.h	29;"	d
-AOA_STRING_DSC_ID	/opt/resource/linux-adk/src/linux-adk.h	39;"	d
-AOA_STRING_MAN_ID	/opt/resource/linux-adk/src/linux-adk.h	37;"	d
-AOA_STRING_MOD_ID	/opt/resource/linux-adk/src/linux-adk.h	38;"	d
-AOA_STRING_SER_ID	/opt/resource/linux-adk/src/linux-adk.h	42;"	d
-AOA_STRING_URL_ID	/opt/resource/linux-adk/src/linux-adk.h	41;"	d
-AOA_STRING_VER_ID	/opt/resource/linux-adk/src/linux-adk.h	40;"	d
-AOA_UNREGISTER_HID	/opt/resource/linux-adk/src/linux-adk.h	31;"	d
-AxisSetting	/opt/resource/linux-adk/src/axis.h	/^} AxisSetting ;$/;"	t	typeref:struct:__anon8
-CarAction	/opt/resource/linux-adk/src/axis.h	/^} CarAction;$/;"	v	typeref:enum:__anon4
-CarScreenSetting	/opt/resource/linux-adk/src/axis.h	/^} CarScreenSetting;$/;"	t	typeref:struct:__anon6
-LOGICAL_MAXIMUM_1	/opt/resource/linux-adk/src/hid.c	113;"	d	file:
-LOGICAL_MAXIMUM_2	/opt/resource/linux-adk/src/hid.c	115;"	d	file:
-LOGICAL_MINIMUM_1	/opt/resource/linux-adk/src/hid.c	112;"	d	file:
-LOGICAL_MINIMUM_2	/opt/resource/linux-adk/src/hid.c	114;"	d	file:
-PACKAGE_BUGREPORT	/opt/resource/linux-adk/src/linux-adk.h	60;"	d
-PACKAGE_VERSION	/opt/resource/linux-adk/src/linux-adk.h	59;"	d
-PHONE_HEIGHT	/opt/resource/linux-adk/src/hid.c	39;"	d	file:
-PHONE_WIDTH	/opt/resource/linux-adk/src/hid.c	38;"	d	file:
-PHYSICAL_MAXIMUM_1	/opt/resource/linux-adk/src/hid.c	119;"	d	file:
-PHYSICAL_MAXIMUM_2	/opt/resource/linux-adk/src/hid.c	121;"	d	file:
-PHYSICAL_MINIMUM_1	/opt/resource/linux-adk/src/hid.c	118;"	d	file:
-PHYSICAL_MINIMUM_2	/opt/resource/linux-adk/src/hid.c	120;"	d	file:
-PI	/opt/resource/linux-adk/src/axis.h	13;"	d
-PhoneScreenSetting	/opt/resource/linux-adk/src/axis.h	/^} PhoneScreenSetting;$/;"	t	typeref:struct:__anon7
-Point	/opt/resource/linux-adk/src/axis.h	/^} Point;$/;"	t	typeref:struct:__anon5
-REPORT_ID	/opt/resource/linux-adk/src/hid.c	35;"	d	file:
-Report	/opt/resource/linux-adk/src/hid.c	/^struct Report {$/;"	s	file:
-TOUCH_DOWN	/opt/resource/linux-adk/src/axis.h	/^	TOUCH_DOWN = 5,$/;"	e	enum:__anon4
-TOUCH_MOVE	/opt/resource/linux-adk/src/axis.h	/^    TOUCH_MOVE = 4,$/;"	e	enum:__anon4
-TOUCH_UP	/opt/resource/linux-adk/src/axis.h	/^    TOUCH_UP   = 6,$/;"	e	enum:__anon4
-_AXIS_H	/opt/resource/linux-adk/src/axis.h	9;"	d
-_HID_H_	/opt/resource/linux-adk/src/hid.h	22;"	d
-_LINUX_ADK_H_	/opt/resource/linux-adk/src/linux-adk.h	22;"	d
-_accessory_t	/opt/resource/linux-adk/src/linux-adk.h	/^typedef struct _accessory_t {$/;"	s
-acc_default	/opt/resource/linux-adk/src/linux-adk.c	/^static const accessory_t acc_default = {$/;"	v	file:
-accessory_main	/opt/resource/linux-adk/src/accessory.c	/^void accessory_main(accessory_t * acc)$/;"	f
-accessory_t	/opt/resource/linux-adk/src/linux-adk.h	/^} accessory_t;$/;"	t	typeref:struct:_accessory_t
-aoa_version	/opt/resource/linux-adk/src/linux-adk.h	/^	uint32_t aoa_version;$/;"	m	struct:_accessory_t
-axis_convert	/opt/resource/linux-adk/src/axis.c	/^Point axis_convert(Point p)$/;"	f
-axis_init	/opt/resource/linux-adk/src/axis.c	/^int axis_init(AxisSetting* as , int angle)$/;"	f
-bInRange	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   bInRange   : 1;$/;"	m	struct:Report::__anon1	file:
-bInRange	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   bInRange   : 1;$/;"	m	struct:Report::__anon2	file:
-bTipSwitch	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   bTipSwitch : 1;$/;"	m	struct:Report::__anon1	file:
-bTipSwitch	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   bTipSwitch : 1;$/;"	m	struct:Report::__anon2	file:
-base_x	/opt/resource/linux-adk/src/axis.h	/^	int base_x;$/;"	m	struct:__anon6
-base_y	/opt/resource/linux-adk/src/axis.h	/^	int base_y;$/;"	m	struct:__anon6
-callback_hid	/opt/resource/linux-adk/src/hid.c	/^static void callback_hid(struct libusb_transfer *transfer)$/;"	f	file:
-cos_val	/opt/resource/linux-adk/src/axis.c	/^static float cos_val =  -1;$/;"	v	file:
-css	/opt/resource/linux-adk/src/axis.h	/^	CarScreenSetting css;$/;"	m	struct:__anon8
-description	/opt/resource/linux-adk/src/linux-adk.h	/^	char *description;$/;"	m	struct:_accessory_t
-descriptor	/opt/resource/linux-adk/src/hid.h	/^	unsigned char descriptor[256];$/;"	m	struct:__anon3
-descriptor_size	/opt/resource/linux-adk/src/hid.h	/^	int descriptor_size;$/;"	m	struct:__anon3
-device	/opt/resource/linux-adk/src/linux-adk.h	/^	char *device;$/;"	m	struct:_accessory_t
-endpoint_in	/opt/resource/linux-adk/src/hid.h	/^	int endpoint_in;$/;"	m	struct:__anon3
-fini_accessory	/opt/resource/linux-adk/src/linux-adk.c	/^static void fini_accessory(accessory_t * acc)$/;"	f	file:
-full_height	/opt/resource/linux-adk/src/axis.h	/^	int full_height;$/;"	m	struct:__anon6
-full_height	/opt/resource/linux-adk/src/axis.h	/^ 	int full_height;$/;"	m	struct:__anon7
-full_width	/opt/resource/linux-adk/src/axis.h	/^	int full_width;$/;"	m	struct:__anon6
-full_width	/opt/resource/linux-adk/src/axis.h	/^	int full_width;$/;"	m	struct:__anon7
-handle	/opt/resource/linux-adk/src/hid.h	/^	struct libusb_device_handle *handle;$/;"	m	struct:__anon3	typeref:struct:__anon3::libusb_device_handle
-handle	/opt/resource/linux-adk/src/linux-adk.h	/^	struct libusb_device_handle *handle;$/;"	m	struct:_accessory_t	typeref:struct:_accessory_t::libusb_device_handle
-hid_device	/opt/resource/linux-adk/src/hid.h	/^} hid_device;$/;"	t	typeref:struct:__anon3
-hid_report_desc	/opt/resource/linux-adk/src/hid.c	/^static unsigned char hid_report_desc[] = {$/;"	v	file:
-init_accessory	/opt/resource/linux-adk/src/linux-adk.c	/^static int init_accessory(accessory_t * acc)$/;"	f	file:
-is_accessory_present	/opt/resource/linux-adk/src/linux-adk.c	/^static int is_accessory_present(accessory_t * acc)$/;"	f	file:
-main	/opt/resource/linux-adk/src/linux-adk.c	/^int main(int argc, char *argv[])$/;"	f
-manufacturer	/opt/resource/linux-adk/src/linux-adk.h	/^	char *manufacturer;$/;"	m	struct:_accessory_t
-model	/opt/resource/linux-adk/src/linux-adk.h	/^	char *model;$/;"	m	struct:_accessory_t
-open_device	/opt/resource/linux-adk/src/hid.c	/^static int open_device(struct libusb_device_handle **handle,$/;"	f	file:
-open_special_vid_dev	/opt/resource/linux-adk/src/device.c	/^int open_special_vid_dev(int vid, accessory_t * acc)$/;"	f
-packet_size	/opt/resource/linux-adk/src/hid.h	/^	ssize_t packet_size;$/;"	m	struct:__anon3
-parse_altsetting	/opt/resource/linux-adk/src/device.c	/^static int parse_altsetting(const struct libusb_interface_descriptor *interface)$/;"	f	file:
-parse_configuration	/opt/resource/linux-adk/src/device.c	/^int parse_configuration(struct libusb_config_descriptor *config)$/;"	f
-parse_devs	/opt/resource/linux-adk/src/device.c	/^int parse_devs(int vid)$/;"	f
-parse_endpoint	/opt/resource/linux-adk/src/device.c	/^static int parse_endpoint(const struct libusb_endpoint_descriptor * endpoint)$/;"	f	file:
-parse_interface	/opt/resource/linux-adk/src/device.c	/^static int parse_interface(const struct libusb_interface *interface)$/;"	f	file:
-pid	/opt/resource/linux-adk/src/linux-adk.h	/^	uint16_t pid;$/;"	m	struct:_accessory_t
-pss	/opt/resource/linux-adk/src/axis.h	/^	PhoneScreenSetting pss;$/;"	m	struct:__anon8
-receive_loop	/opt/resource/linux-adk/src/hid.c	/^static void *receive_loop(void *arg)$/;"	f	file:
-register_hid_callback	/opt/resource/linux-adk/src/hid.c	/^int register_hid_callback(accessory_t * acc, hid_device * hid)$/;"	f
-report_id	/opt/resource/linux-adk/src/hid.c	/^	unsigned char  report_id ;  \/\/ Must be set to 4$/;"	m	struct:Report	file:
-reserved	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   reserved   : 6;$/;"	m	struct:Report::__anon1	file:
-reserved	/opt/resource/linux-adk/src/hid.c	/^		unsigned char   reserved   : 6;$/;"	m	struct:Report::__anon2	file:
-rot	/opt/resource/linux-adk/src/axis.c	/^static int rot;$/;"	v	file:
-rx_thread	/opt/resource/linux-adk/src/hid.h	/^	pthread_t rx_thread;$/;"	m	struct:__anon3
-search_hid	/opt/resource/linux-adk/src/hid.c	/^unsigned char search_hid(hid_device * hid)$/;"	f
-send_hid_descriptor	/opt/resource/linux-adk/src/hid.c	/^int send_hid_descriptor(accessory_t * acc, hid_device * hid)$/;"	f
-serial	/opt/resource/linux-adk/src/linux-adk.h	/^	char *serial;$/;"	m	struct:_accessory_t
-set_hid_logical_range	/opt/resource/linux-adk/src/hid.c	/^void set_hid_logical_range(unsigned short width, unsigned short height) $/;"	f
-set_hid_physical_range	/opt/resource/linux-adk/src/hid.c	/^void set_hid_physical_range(unsigned short width, unsigned short height) $/;"	f
-setup	/opt/resource/linux-adk/src/axis.c	/^static AxisSetting* setup;$/;"	v	file:
-signal_handler	/opt/resource/linux-adk/src/linux-adk.c	/^static void signal_handler(int signo)$/;"	f	file:
-sin_val	/opt/resource/linux-adk/src/axis.c	/^static float sin_val =  -1;$/;"	v	file:
-status	/opt/resource/linux-adk/src/hid.c	/^	} status;$/;"	m	struct:Report	typeref:struct:Report::__anon1	file:
-status	/opt/resource/linux-adk/src/hid.c	/^	} status;$/;"	m	struct:Report	typeref:struct:Report::__anon2	file:
-stop_acc	/opt/resource/linux-adk/src/linux-adk.c	/^volatile int stop_acc = 0;$/;"	v
-transfer	/opt/resource/linux-adk/src/linux-adk.h	/^	struct libusb_transfer *transfer;$/;"	m	struct:_accessory_t	typeref:struct:_accessory_t::libusb_transfer
-url	/opt/resource/linux-adk/src/linux-adk.h	/^	char *url;$/;"	m	struct:_accessory_t
-utf8	/opt/resource/linux-adk/src/linux-adk.c	/^char* utf8(const char *str)$/;"	f
-valid_mouse_report_descriptor	/opt/resource/linux-adk/src/accessory.c	/^static unsigned char valid_mouse_report_descriptor [] = $/;"	v	file:
-version	/opt/resource/linux-adk/src/linux-adk.h	/^	char *version;$/;"	m	struct:_accessory_t
-vid	/opt/resource/linux-adk/src/linux-adk.h	/^	uint16_t vid;$/;"	m	struct:_accessory_t
-view_height	/opt/resource/linux-adk/src/axis.h	/^	int view_height;$/;"	m	struct:__anon6
-view_width	/opt/resource/linux-adk/src/axis.h	/^	int view_width;$/;"	m	struct:__anon6
-wXData	/opt/resource/linux-adk/src/hid.c	/^	short  wXData;$/;"	m	struct:Report	file:
-wXData	/opt/resource/linux-adk/src/hid.c	/^	unsigned short  wXData;$/;"	m	struct:Report	file:
-wYData	/opt/resource/linux-adk/src/hid.c	/^	short  wYData;$/;"	m	struct:Report	file:
-wYData	/opt/resource/linux-adk/src/hid.c	/^	unsigned short  wYData;$/;"	m	struct:Report	file:
-x	/opt/resource/linux-adk/src/axis.h	/^	int x;$/;"	m	struct:__anon5
-y	/opt/resource/linux-adk/src/axis.h	/^	int y;$/;"	m	struct:__anon5
+AOA_ACCESSORY_ADB_PID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	47;"	d
+AOA_ACCESSORY_AUDIO_ADB_PID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	51;"	d
+AOA_ACCESSORY_AUDIO_PID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	50;"	d
+AOA_ACCESSORY_EP_IN	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	54;"	d
+AOA_ACCESSORY_EP_OUT	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	55;"	d
+AOA_ACCESSORY_INTERFACE	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	56;"	d
+AOA_ACCESSORY_PID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	46;"	d
+AOA_ACCESSORY_VID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	45;"	d
+AOA_AUDIO_ADB_PID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	49;"	d
+AOA_AUDIO_PID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	48;"	d
+AOA_AUDIO_SUPPORT	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	34;"	d
+AOA_GET_PROTOCOL	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	27;"	d
+AOA_REGISTER_HID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	30;"	d
+AOA_SEND_HID_EVENT	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	33;"	d
+AOA_SEND_IDENT	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	28;"	d
+AOA_SET_HID_REPORT_DESC	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	32;"	d
+AOA_START_ACCESSORY	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	29;"	d
+AOA_STRING_DSC_ID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	39;"	d
+AOA_STRING_MAN_ID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	37;"	d
+AOA_STRING_MOD_ID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	38;"	d
+AOA_STRING_SER_ID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	42;"	d
+AOA_STRING_URL_ID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	41;"	d
+AOA_STRING_VER_ID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	40;"	d
+AOA_UNREGISTER_HID	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	31;"	d
+AxisSetting	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^} AxisSetting ;$/;"	t	typeref:struct:__anon5
+CarAction	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^} CarAction;$/;"	v	typeref:enum:__anon1
+CarScreenSetting	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^} CarScreenSetting;$/;"	t	typeref:struct:__anon3
+HIDAPI_H__	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	28;"	d
+HID_API_CALL	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	34;"	d
+HID_API_CALL	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	37;"	d
+HID_API_EXPORT	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	33;"	d
+HID_API_EXPORT	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	36;"	d
+HID_API_EXPORT_CALL	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	40;"	d
+LOGICAL_MAXIMUM_1	/home/bravo/Projects/Linux/linux-adk/src/hid.c	118;"	d	file:
+LOGICAL_MAXIMUM_2	/home/bravo/Projects/Linux/linux-adk/src/hid.c	120;"	d	file:
+LOGICAL_MINIMUM_1	/home/bravo/Projects/Linux/linux-adk/src/hid.c	117;"	d	file:
+LOGICAL_MINIMUM_2	/home/bravo/Projects/Linux/linux-adk/src/hid.c	119;"	d	file:
+PACKAGE_BUGREPORT	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	60;"	d
+PACKAGE_VERSION	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	59;"	d
+PHONE_HEIGHT	/home/bravo/Projects/Linux/linux-adk/src/hid.c	41;"	d	file:
+PHONE_HEIGHT	/home/bravo/Projects/Linux/linux-adk/src/hid.c	44;"	d	file:
+PHONE_WIDTH	/home/bravo/Projects/Linux/linux-adk/src/hid.c	40;"	d	file:
+PHONE_WIDTH	/home/bravo/Projects/Linux/linux-adk/src/hid.c	43;"	d	file:
+PHYSICAL_MAXIMUM_1	/home/bravo/Projects/Linux/linux-adk/src/hid.c	124;"	d	file:
+PHYSICAL_MAXIMUM_2	/home/bravo/Projects/Linux/linux-adk/src/hid.c	126;"	d	file:
+PHYSICAL_MINIMUM_1	/home/bravo/Projects/Linux/linux-adk/src/hid.c	123;"	d	file:
+PHYSICAL_MINIMUM_2	/home/bravo/Projects/Linux/linux-adk/src/hid.c	125;"	d	file:
+PI	/home/bravo/Projects/Linux/linux-adk/src/axis.h	13;"	d
+PhoneScreenSetting	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^} PhoneScreenSetting;$/;"	t	typeref:struct:__anon4
+Point	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^} Point;$/;"	t	typeref:struct:__anon2
+REPORT_ID	/home/bravo/Projects/Linux/linux-adk/src/hid.c	37;"	d	file:
+Report	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^struct Report {$/;"	s	file:
+TOUCH_DOWN	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	TOUCH_DOWN = 5,$/;"	e	enum:__anon1
+TOUCH_MOVE	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^    TOUCH_MOVE = 4,$/;"	e	enum:__anon1
+TOUCH_UP	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^    TOUCH_UP   = 6,$/;"	e	enum:__anon1
+_AXIS_H	/home/bravo/Projects/Linux/linux-adk/src/axis.h	9;"	d
+_HID_H_	/home/bravo/Projects/Linux/linux-adk/src/hid.h	22;"	d
+_LINUX_ADK_H_	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	22;"	d
+_accessory_t	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^typedef struct _accessory_t {$/;"	s
+acc_default	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.c	/^static const accessory_t acc_default = {$/;"	v	file:
+accessory_main	/home/bravo/Projects/Linux/linux-adk/src/accessory.c	/^void accessory_main(accessory_t * acc)$/;"	f
+accessory_t	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^} accessory_t;$/;"	t	typeref:struct:_accessory_t
+aoa_version	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	uint32_t aoa_version;$/;"	m	struct:_accessory_t
+axis_convert	/home/bravo/Projects/Linux/linux-adk/src/axis.c	/^Point axis_convert(Point p)$/;"	f
+axis_init	/home/bravo/Projects/Linux/linux-adk/src/axis.c	/^int axis_init(AxisSetting* as , int angle)$/;"	f
+bInRange	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^		unsigned char   bInRange   : 1;$/;"	m	struct:Report::__anon6	file:
+bInRange	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^		unsigned char   bInRange   : 1;$/;"	m	struct:Report::__anon7	file:
+bTipSwitch	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^		unsigned char   bTipSwitch : 1;$/;"	m	struct:Report::__anon6	file:
+bTipSwitch	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^		unsigned char   bTipSwitch : 1;$/;"	m	struct:Report::__anon7	file:
+base_x	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	int base_x;$/;"	m	struct:__anon3
+base_y	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	int base_y;$/;"	m	struct:__anon3
+callback_hid	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^static void callback_hid(struct libusb_transfer *transfer)$/;"	f	file:
+callback_hidapi	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^static void callback_hidapi(accessory_t * acc , void* buffer, int length)$/;"	f	file:
+cos_val	/home/bravo/Projects/Linux/linux-adk/src/axis.c	/^static float cos_val =  -1;$/;"	v	file:
+css	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	CarScreenSetting css;$/;"	m	struct:__anon5
+description	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	char *description;$/;"	m	struct:_accessory_t
+descriptor	/home/bravo/Projects/Linux/linux-adk/src/hid.h	/^	unsigned char descriptor[256];$/;"	m	struct:__anon8
+descriptor_size	/home/bravo/Projects/Linux/linux-adk/src/hid.h	/^	int descriptor_size;$/;"	m	struct:__anon8
+device	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	char *device;$/;"	m	struct:_accessory_t
+endpoint_in	/home/bravo/Projects/Linux/linux-adk/src/hid.h	/^	int endpoint_in;$/;"	m	struct:__anon8
+fini_accessory	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.c	/^static void fini_accessory(accessory_t * acc)$/;"	f	file:
+full_height	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	int full_height;$/;"	m	struct:__anon3
+full_height	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^ 	int full_height;$/;"	m	struct:__anon4
+full_width	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	int full_width;$/;"	m	struct:__anon3
+full_width	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	int full_width;$/;"	m	struct:__anon4
+handle	/home/bravo/Projects/Linux/linux-adk/src/hid.h	/^	struct libusb_device_handle *handle;$/;"	m	struct:__anon8	typeref:struct:__anon8::libusb_device_handle
+handle	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	struct libusb_device_handle *handle;$/;"	m	struct:_accessory_t	typeref:struct:_accessory_t::libusb_device_handle
+hid_device	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^		typedef struct hid_device_ hid_device; \/**< opaque hidapi structure *\/$/;"	t	typeref:struct:hid_device_
+hid_device_info	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^		struct hid_device_info {$/;"	s
+hid_device_t	/home/bravo/Projects/Linux/linux-adk/src/hid.h	/^} hid_device_t;$/;"	t	typeref:struct:__anon8
+hid_report_desc	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^static unsigned char hid_report_desc[] = {$/;"	v	file:
+init_accessory	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.c	/^static int init_accessory(accessory_t * acc)$/;"	f	file:
+interface_number	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			int interface_number;$/;"	m	struct:hid_device_info
+is_accessory_present	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.c	/^static int is_accessory_present(accessory_t * acc)$/;"	f	file:
+main	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.c	/^int main(int argc, char *argv[])$/;"	f
+manufacturer	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	char *manufacturer;$/;"	m	struct:_accessory_t
+manufacturer_string	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			wchar_t *manufacturer_string;$/;"	m	struct:hid_device_info
+model	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	char *model;$/;"	m	struct:_accessory_t
+next	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			struct hid_device_info *next;$/;"	m	struct:hid_device_info	typeref:struct:hid_device_info::hid_device_info
+open_device	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^static int open_device(struct libusb_device_handle **handle,$/;"	f	file:
+open_special_vid_dev	/home/bravo/Projects/Linux/linux-adk/src/device.c	/^int open_special_vid_dev(int vid, accessory_t * acc)$/;"	f
+packet_size	/home/bravo/Projects/Linux/linux-adk/src/hid.h	/^	ssize_t packet_size;$/;"	m	struct:__anon8
+parse_altsetting	/home/bravo/Projects/Linux/linux-adk/src/device.c	/^static int parse_altsetting(const struct libusb_interface_descriptor *interface)$/;"	f	file:
+parse_configuration	/home/bravo/Projects/Linux/linux-adk/src/device.c	/^int parse_configuration(struct libusb_config_descriptor *config)$/;"	f
+parse_devs	/home/bravo/Projects/Linux/linux-adk/src/device.c	/^int parse_devs(int vid)$/;"	f
+parse_endpoint	/home/bravo/Projects/Linux/linux-adk/src/device.c	/^static int parse_endpoint(const struct libusb_endpoint_descriptor * endpoint)$/;"	f	file:
+parse_interface	/home/bravo/Projects/Linux/linux-adk/src/device.c	/^static int parse_interface(const struct libusb_interface *interface)$/;"	f	file:
+path	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			char *path;$/;"	m	struct:hid_device_info
+pid	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	uint16_t pid;$/;"	m	struct:_accessory_t
+product_id	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			unsigned short product_id;$/;"	m	struct:hid_device_info
+product_string	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			wchar_t *product_string;$/;"	m	struct:hid_device_info
+pss	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	PhoneScreenSetting pss;$/;"	m	struct:__anon5
+receive_loop	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^static void *receive_loop(void *arg)$/;"	f	file:
+register_hid_callback	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^int register_hid_callback(accessory_t * acc, hid_device_t * hid)$/;"	f
+register_hidapi_callback	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^int register_hidapi_callback(accessory_t * acc) $/;"	f
+release_number	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			unsigned short release_number;$/;"	m	struct:hid_device_info
+report_id	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^	unsigned char  report_id ;  \/\/ Must be set to 4$/;"	m	struct:Report	file:
+reserved	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^		unsigned char   reserved   : 6;$/;"	m	struct:Report::__anon6	file:
+reserved	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^		unsigned char   reserved   : 6;$/;"	m	struct:Report::__anon7	file:
+rot	/home/bravo/Projects/Linux/linux-adk/src/axis.c	/^static int rot;$/;"	v	file:
+rx_hidapi	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^void * rx_hidapi(void* para)$/;"	f
+rx_thread	/home/bravo/Projects/Linux/linux-adk/src/hid.h	/^	pthread_t rx_thread;$/;"	m	struct:__anon8
+search_hid	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^unsigned char search_hid(hid_device_t * hid)$/;"	f
+send_hid_descriptor	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^int send_hid_descriptor(accessory_t * acc, hid_device_t * hid)$/;"	f
+serial	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	char *serial;$/;"	m	struct:_accessory_t
+serial_number	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			wchar_t *serial_number;$/;"	m	struct:hid_device_info
+set_hid_logical_range	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^void set_hid_logical_range(unsigned short width, unsigned short height) $/;"	f
+set_hid_physical_range	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^void set_hid_physical_range(unsigned short width, unsigned short height) $/;"	f
+setup	/home/bravo/Projects/Linux/linux-adk/src/axis.c	/^static AxisSetting* setup;$/;"	v	file:
+signal_handler	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.c	/^static void signal_handler(int signo)$/;"	f	file:
+sin_val	/home/bravo/Projects/Linux/linux-adk/src/axis.c	/^static float sin_val =  -1;$/;"	v	file:
+status	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^	} status;$/;"	m	struct:Report	typeref:struct:Report::__anon6	file:
+status	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^	} status;$/;"	m	struct:Report	typeref:struct:Report::__anon7	file:
+stop_acc	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.c	/^volatile int stop_acc = 0;$/;"	v
+transfer	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	struct libusb_transfer *transfer;$/;"	m	struct:_accessory_t	typeref:struct:_accessory_t::libusb_transfer
+url	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	char *url;$/;"	m	struct:_accessory_t
+usage	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			unsigned short usage;$/;"	m	struct:hid_device_info
+usage_page	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			unsigned short usage_page;$/;"	m	struct:hid_device_info
+utf8	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.c	/^char* utf8(const char *str)$/;"	f
+valid_mouse_report_descriptor	/home/bravo/Projects/Linux/linux-adk/src/accessory.c	/^static unsigned char valid_mouse_report_descriptor [] = $/;"	v	file:
+vendor_id	/home/bravo/Projects/Linux/linux-adk/src/hidapi.h	/^			unsigned short vendor_id;$/;"	m	struct:hid_device_info
+version	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	char *version;$/;"	m	struct:_accessory_t
+vid	/home/bravo/Projects/Linux/linux-adk/src/linux-adk.h	/^	uint16_t vid;$/;"	m	struct:_accessory_t
+view_height	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	int view_height;$/;"	m	struct:__anon3
+view_width	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	int view_width;$/;"	m	struct:__anon3
+wXData	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^	short  wXData;$/;"	m	struct:Report	file:
+wXData	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^	unsigned short  wXData;$/;"	m	struct:Report	file:
+wYData	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^	short  wYData;$/;"	m	struct:Report	file:
+wYData	/home/bravo/Projects/Linux/linux-adk/src/hid.c	/^	unsigned short  wYData;$/;"	m	struct:Report	file:
+x	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	int x;$/;"	m	struct:__anon2
+y	/home/bravo/Projects/Linux/linux-adk/src/axis.h	/^	int y;$/;"	m	struct:__anon2

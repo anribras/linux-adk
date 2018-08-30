@@ -89,7 +89,7 @@ static unsigned char valid_mouse_report_descriptor [] =
 void accessory_main(accessory_t * acc)
 {
 	int ret = 0;
-	hid_device hid;
+	hid_device_t hid;
 
 	//memcpy(hid.descriptor,
 			//valid_mouse_report_descriptor,
@@ -109,7 +109,7 @@ void accessory_main(accessory_t * acc)
 	/*}*/
 /* HID handling */
 		if(search_hid(&hid) == 0) {
-			register_hid_callback(acc, &hid);
+			/*register_hid_callback(acc, &hid);*/
 			send_hid_descriptor(acc, &hid);
 		}
 #else

@@ -31,11 +31,11 @@ typedef struct {
 	int endpoint_in;
 	ssize_t packet_size;
 	pthread_t rx_thread;
-} hid_device;
+} hid_device_t;
 
 /* Functions */
-extern int send_hid_descriptor(accessory_t *acc, hid_device *hid);
-extern int register_hid_callback(accessory_t* acc, hid_device *hid);
-extern unsigned char search_hid(hid_device *hid);
+extern int send_hid_descriptor(accessory_t *acc, hid_device_t *hid);
+extern int register_hid_callback(accessory_t* acc, hid_device_t *hid);
+extern unsigned char search_hid(hid_device_t *hid);
 
 #endif /* _HID_H_ */

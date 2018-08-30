@@ -21,9 +21,9 @@ CC			= $(CROSS_COMPILE)gcc
 INSTALL		= install
 MKDIR		= mkdir -p
 
-LIBS		=  -lusb-1.0 -lpthread -lm
+LIBS		=  -lusb-1.0 -lpthread -lm -lhidapi-hidraw -L/home/bravo/Projects/Linux/linux-adk
 CFLAGS		+= -g -O0
-LDFLAGS 	+=
+LDFLAGS 	+= 
 CPPFLAGS	+=
 
 ARCH		?= $(ARCH_x86_64)

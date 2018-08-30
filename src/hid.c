@@ -31,6 +31,8 @@
 #include "linux-adk.h"
 #include "hid.h"
 #include "axis.h"
+#include <wchar.h>
+#include "hidapi.h"
 
 #define REPORT_ID (4)
 //#define TOUCHSCREEN_ENABLE  (2)
@@ -398,8 +400,7 @@ static int open_device(struct libusb_device_handle **handle,
 		*handle = NULL;
 		return -1;
 	}
-
-	printf("libusb_kernel_driver_active\n");
+	printf("libusb_kernel_driver_active %d\n",interface);
 	ret = libusb_kernel_driver_active(*handle, interface);
 	if (ret == 1) {
 		if (libusb_detach_kernel_driver(*handle, interface)) {
@@ -425,6 +426,42 @@ static int open_device(struct libusb_device_handle **handle,
 	}
 
 	return 0;
+}
+
+static void callback_hidapi(accessory_t * acc , void* buf, int length)
+{
+	struct libusb_transfer *android_transfer;
+	unsigned char *keybuf;
+	int rc;
+	android_transfer = libusb_alloc_transfer(0);
+	int s = 0;
+	printf("orig hid report data from mouse:\n");
+	unsigned char* buffer = (unsigned char*)buf;
+	for(s = 0 ; s <  length; s ++) {
+		printf("%02x ",buffer[s]);
+	};
+	printf("\n");
+
+	keybuf = malloc(length + LIBUSB_CONTROL_SETUP_SIZE);
+	memcpy(keybuf + LIBUSB_CONTROL_SETUP_SIZE, buffer,length);
+
+	libusb_fill_control_setup(keybuf,
+				  LIBUSB_ENDPOINT_OUT |
+				  LIBUSB_REQUEST_TYPE_VENDOR,
+				  AOA_SEND_HID_EVENT, 1, 0,
+				  length);
+
+	libusb_fill_control_transfer(android_transfer, acc->handle,
+					 keybuf, NULL, NULL, 0);
+
+	android_transfer->flags =
+		LIBUSB_TRANSFER_FREE_BUFFER | LIBUSB_TRANSFER_FREE_TRANSFER;
+
+	rc = libusb_submit_transfer(android_transfer);
+	if (rc)
+		printf("USB error : %s\n", libusb_error_name(rc));
+
+	return ;
 }
 
 static void callback_hid(struct libusb_transfer *transfer)
@@ -537,7 +574,7 @@ static void callback_hid(struct libusb_transfer *transfer)
 	}
 }
 
-unsigned char search_hid(hid_device * hid)
+unsigned char search_hid(hid_device_t * hid)
 {
 	libusb_device **list;
 	struct libusb_device_descriptor desc;
@@ -653,7 +690,74 @@ error0:
 	return -1;
 }
 
-int register_hid_callback(accessory_t * acc, hid_device * hid)
+
+void * rx_hidapi(void* para)
+{
+	accessory_t * acc = (accessory_t *)para;
+	unsigned char buf[256] = {0};
+	hid_device *handle;
+	struct hid_device_info *devs, *cur_dev;
+	printf("rx_hidapi start..\n");
+	if (hid_init())
+		return -1;
+	devs = hid_enumerate(0x0, 0x0);
+	printf("hid_enumerate\n");
+	cur_dev = devs;	
+	int pid,vid;
+	wchar_t* found = NULL;
+	while (cur_dev) {
+		printf("Device Found\n  type: %04hx %04hx\n  path: %s\n  serial_number: %ls", cur_dev->vendor_id, cur_dev->product_id, cur_dev->path, cur_dev->serial_number);
+		printf("\n");
+		printf("  Manufacturer: %ls\n", cur_dev->manufacturer_string);
+		printf("  Product:      %ls\n", cur_dev->product_string);
+		printf("  Release:      %hx\n", cur_dev->release_number);
+		printf("  Interface:    %d\n",  cur_dev->interface_number);
+		printf("\n");
+		// wchar_t using wcsstr replace strstr.
+		found = wcsstr(cur_dev->product_string,L"Mouse"); 
+		if (found) {
+			printf("Mouse found\n");
+			pid = cur_dev->product_id;
+			vid = cur_dev->vendor_id;
+			break;
+		} else {
+			printf("Looking up Mouse ...\n");
+			cur_dev = cur_dev->next;
+		}
+	}
+	hid_free_enumeration(devs);
+
+	printf("hid_open\n");
+	handle = hid_open(vid, pid, NULL);
+	/*handle = hid_open(0x413c, 0x301a, NULL);*/
+	if (!handle) {
+		printf("unable to open device\n");
+ 		return 1;
+	}
+	int res = -1;
+	while(1) {
+		//block reading
+		res = hid_read(handle, buf, sizeof(buf));
+		if (res > 0) {
+			callback_hidapi(acc , buf, res);
+		} else {
+			printf("error during hid_read %d\n",res);
+			return res;
+		}
+	}
+	hid_exit();
+}
+
+
+
+int register_hidapi_callback(accessory_t * acc) 
+{
+	pthread_t rx_t;
+	rx_t = pthread_create(&rx_t,NULL,rx_hidapi,acc);
+	return 0;
+}
+
+int register_hid_callback(accessory_t * acc, hid_device_t * hid)
 {
 	struct libusb_transfer *hid_transfer;
 	unsigned char *keybuf;
@@ -695,7 +799,7 @@ int register_hid_callback(accessory_t * acc, hid_device * hid)
 	return 0;
 }
 
-int send_hid_descriptor(accessory_t * acc, hid_device * hid)
+int send_hid_descriptor(accessory_t * acc, hid_device_t * hid)
 {
 	int ret;
 
@@ -729,6 +833,15 @@ int send_hid_descriptor(accessory_t * acc, hid_device * hid)
 		libusb_close(hid->handle);
 		return -1;
 	}
+
+
+	// close libusb hid-handle,  using hidapi handle
+	libusb_release_interface(hid->handle, 0);
+	libusb_attach_kernel_driver(hid->handle,0);
+
+	libusb_close(hid->handle);
+
+	register_hidapi_callback(acc);
 
 	pthread_create(&hid->rx_thread, NULL, receive_loop, NULL);
 
